@@ -1,4 +1,5 @@
 
+
 var s1 = document.createElement('script');
 s1.setAttribute('src',"https://unpkg.com/vue@next");
 document.head.appendChild(s1);
@@ -35,9 +36,11 @@ window.onload = ()=>{
     
     const { loadModule, version } = window["vue3-sfc-loader"];
     
+    console.log("root is "+root);
+    
     const app = Vue.createApp({
       components: {
-        'my-component': Vue.defineAsyncComponent(() => loadModule('./vue/myComponent.vue', options)),
+        'my-component': Vue.defineAsyncComponent(() => loadModule(root+'vue/myComponent.vue', options)),
       },
       template: `Hello <my-component></my-component> <sub>from vue3-sfc-loader v${ version }</sub>`
     });
