@@ -12,6 +12,7 @@ window.onload = ()=>{
     
     var appdiv = document.createElement('div');
     appdiv.setAttribute('id',"app");
+    appdiv.style.height = "100vh";
     document.body.appendChild(appdiv);
     
     
@@ -42,7 +43,7 @@ window.onload = ()=>{
       components: {
         'my-component': Vue.defineAsyncComponent(() => loadModule(root+'vue/myComponent.vue', options)),
       },
-      template: `Hello <my-component></my-component> <sub>from vue3-sfc-loader v${ version }</sub>`
+      template: `<my-component></my-component>`
     });
     
     app.mount('#app');
