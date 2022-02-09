@@ -2,9 +2,11 @@
 
 This repo publishes a simple javascript webb app to
 
-(insert url here)
+https://openbekeniot.github.io/webapp/
 
-The web app is initialted by a very simple webpage ont he device at http://(IP)/app
+The web app is initialted by a very simple webpage on the device at http://(IP)/app
+
+Currently the address the device uses is hardcoded, but soon there will be a configuration, so you can host locally on your LAN for more security.
 
 This calls for startup.js, which then loads VueJS and a SFC myComponent.vue, whic is the guts of the web app.
 
