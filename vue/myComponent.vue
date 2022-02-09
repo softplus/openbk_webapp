@@ -5,6 +5,7 @@
       <button class="tablinks" @click="open($event, 'Logs')">Logs</button>
       <button class="tablinks" @click="open($event, 'Config')">Config</button>
       <button class="tablinks" @click="open($event, 'Status')">Status</button>
+      <button class="tablinks" @click="open($event, 'About')">About</button>
     </div>
     
     <!-- Tab content -->
@@ -20,6 +21,12 @@
     <div class="tabcontent" v-if="tab === 'Status'">
       <h3>Status</h3>
       <p>Status Page.</p>
+    </div>    
+    <div class="tabcontent" v-if="tab === 'About'">
+      <h3>About</h3>
+      <p>A simple web app to go with OpenBekenIOT equipped devices.</p>
+      <p>This app is a pure javascript application written in VueJS as an SFC .vue component, and dynamically loaded from the device via a simple webpage.  The intent here is to be able to provide a rich UI and allow the device UI to remain simple (and small).</p>
+      <p>Currently, it support displaying logging from the device</p>
     </div>    
     </div>
 </template>
