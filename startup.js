@@ -20,8 +20,8 @@ window.onload = ()=>{
     appdiv.appendChild(comp);
     
     window.components = [
-        { name:'controller', path:'/vue/controller.vue' },
-        { name:'myComponent', path:'/vue/myComponent.vue' },
+        { name:'controller', path:root+'vue/controller.vue' },
+        { name:'myComponent', path:root+'vue/myComponent.vue' },
     ];
 
     let numcomponents = 0;
