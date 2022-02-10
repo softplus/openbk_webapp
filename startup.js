@@ -46,8 +46,8 @@ window.onload = ()=>{
     
     window.getComponent = (name)=>{
         for (let i = 0; i < numcomponents; i++){
-            if (window.components[0].name === name){
-                return window.components[0].data;
+            if (window.components[i].name === name){
+                return window.components[i].data;
             }
         }
         return undefined;
