@@ -1,8 +1,8 @@
 
 
 var s1 = document.createElement('script');
-//s1.setAttribute('src',"https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.28/vue.js");
-s1.setAttribute('src',"https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.js");
+s1.setAttribute('src',"https://cdn.jsdelivr.net/npm/vue@2.x");
+
 document.head.appendChild(s1);
 
 s1 = document.createElement('script');
