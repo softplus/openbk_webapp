@@ -1,12 +1,12 @@
 
 
 var s1 = document.createElement('script');
-s1.setAttribute('src',"https://cdn.jsdelivr.net/npm/vue@2.x");
+s1.setAttribute('src', window.root+"lib/vue.min.js");
 
 document.head.appendChild(s1);
 
 s1 = document.createElement('script');
-s1.setAttribute('src',"https://unpkg.com/http-vue-loader");
+s1.setAttribute('src', window.root+"lib/httpVueLoader.js");
 document.head.appendChild(s1);
 
 window.onload = ()=>{
@@ -20,8 +20,9 @@ window.onload = ()=>{
     appdiv.appendChild(comp);
     
     window.components = [
-        { name:'controller', path:root+'vue/controller.vue' },
-        { name:'myComponent', path:root+'vue/myComponent.vue' },
+        { name:'ota', path: window.root+'vue/ota.vue' },
+        { name:'controller', path: window.root+'vue/controller.vue' },
+        { name:'myComponent', path: window.root+'vue/myComponent.vue' },
     ];
 
     let numcomponents = 0;

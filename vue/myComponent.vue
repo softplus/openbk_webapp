@@ -2,10 +2,11 @@
     <div class="fullscreen">
     <!-- Tab links -->
     <div class="tab">
-      <button class="tablinks" @click="open($event, 'Logs')">Logs</button>
-      <button class="tablinks" @click="open($event, 'Config')">Config</button>
-      <button class="tablinks" @click="open($event, 'Status')">Status</button>
-      <button class="tablinks" @click="open($event, 'About')">About</button>
+      <button :class="'tablinks '+Logsclass" @click="open($event, 'Logs')">Logs</button>
+      <button :class="'tablinks '+Configclass" @click="open($event, 'Config')">Config</button>
+      <button :class="'tablinks '+Statusclass" @click="open($event, 'Status')">Status</button>
+      <button :class="'tablinks '+OTAclass" @click="open($event, 'OTA')">OTA</button>
+      <button :class="'tablinks '+Aboutclass" @click="open($event, 'About')">About</button>
     </div>
     
     <!-- Tab content -->
@@ -41,12 +42,19 @@
       <p>Currently, it supports displaying logging from the device</p>
       <test-controller></test-controller>
     </div>    
+
+    <div class="tabcontent" v-if="tab === 'OTA'">
+      <h3>OTA</h3>
+      <ota-controller></ota-controller>
+    </div>    
+
     </div>
 </template>
 
 <script>
   module.exports = {
   components: {
+    'ota-controller': window.getComponent('ota'),
     'test-controller': window.getComponent('controller'),
   },
       
@@ -59,12 +67,24 @@
         backgroundstyle:{
             backgroundImage:"linear-gradient(to right,#eff,#f81)"
         },
+        Logsclass:'',
+        Aboutclass:'',
+        Configclass:'active',
+        Statusclass:'',
+        OTAclass: '',
       }
     },
     methods:{
         open(evt, name) {
             console.log('select tab '+name);
             this.tab = name;
+            this.Logsclass = '';
+            this.Aboutclass = '';
+            this.Configclass = '';
+            this.Statusclass = '';
+            this.OTAclass = '';
+
+            this[name+'class'] = 'active';
         },       
         
 
