@@ -90,6 +90,7 @@
             this.Configclass = '';
             this.Statusclass = '';
             this.OTAclass = '';
+            this.Filesystemclass = '';
 
             this[name+'class'] = 'active';
         },       
