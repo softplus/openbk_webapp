@@ -6,6 +6,7 @@
       <button :class="'tablinks '+Configclass" @click="open($event, 'Config')">Config</button>
       <button :class="'tablinks '+Statusclass" @click="open($event, 'Status')">Status</button>
       <button :class="'tablinks '+OTAclass" @click="open($event, 'OTA')">OTA</button>
+      <button :class="'tablinks '+Filesystemclass" @click="open($event, 'Filesystem')">Filesystem</button>
       <button :class="'tablinks '+Aboutclass" @click="open($event, 'About')">About</button>
     </div>
     
@@ -47,6 +48,10 @@
       <h3>OTA</h3>
       <ota-controller></ota-controller>
     </div>    
+    <div class="tabcontent" v-if="tab === 'Filesystem'">
+      <h3>Filesystem</h3>
+      <filesystem-controller></filesystem-controller>
+    </div>    
 
     </div>
 </template>
@@ -55,6 +60,7 @@
   module.exports = {
   components: {
     'ota-controller': window.getComponent('ota'),
+    'filesystem-controller': window.getComponent('filesystem'),
     'test-controller': window.getComponent('controller'),
   },
       
@@ -72,6 +78,7 @@
         Configclass:'active',
         Statusclass:'',
         OTAclass: '',
+        Filesystemclass: '',
       }
     },
     methods:{
