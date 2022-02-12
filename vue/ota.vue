@@ -1,13 +1,19 @@
 <template>
     <div>
         <div>
-        <button @click="backup">Read fsblock</button>
-        <button @click="startota">Start OTA</button>
-        <button @click="reboot">Reboot</button>
-        <button @click="restore">Restore fsblock</button>
+        <button @click="backup(null, $event)">Read fsblock</button>
+        <button @click="startota(null, $event)">Start OTA</button>
+        <button @click="reboot(null, $event)">Reboot</button>
+        <button @click="restore(null, $event)">Restore fsblock</button>
         <br/>
-        <button @click="sequence">Backup/OTA/Resore</button>
-
+        <button @click="sequence(null, $event)">Backup/OTA/Resore</button>
+        <br/>
+        <select v-model="defaultaction">
+            <option value=''>Do nothing</option>
+            <option value='ota'>OTA Only</option>
+            <option value='sequence'>Backup/OTA/Restore</option>
+        </select>
+        <span>Selected: {{ defaultaction }}</span>
         </div>
         <div class="drop" @drop="dropHandler($event)" @dragover="dragOverHandler($event)">
             <div class="otatext center" v-html="otatext"></div>
@@ -26,6 +32,7 @@
         otadata:null,
         otatext:'drop OTA file (.RBL) here',
         status:'nothing going on',
+        defaultaction: ''
       }
     },
     methods:{
@@ -46,6 +53,10 @@
                             this.otadata = event.target.result;
                             this.otatext = file.name + ' len:'+this.otadata.byteLength;
                             this.status = 'OTA file dropped...';
+                            switch (this.defaultaction){
+                                case 'ota': this.startota(); break;
+                                case 'sequence':  this.sequence(); break;
+                            }
                             //holder.style.background = 'url(' + event.target.result + ') no-repeat center';
                         };
                         console.log(file);

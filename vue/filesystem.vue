@@ -1,8 +1,8 @@
 <template>
     <div>
         <div>
-        <button @click="backup">Read fsblock</button>
-        <button @click="restore">Restore fsblock</button>
+        <button @click="backup(null, $event)">Read fsblock</button>
+        <button @click="restore(null, $event)">Restore fsblock</button>
         </div>
         <input type="text" v-model="folder">
         <div class="drop" @drop="dropHandler($event)" @dragover="dragOverHandler($event)">
