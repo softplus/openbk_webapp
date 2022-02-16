@@ -38,10 +38,11 @@
 
     <div class="tabcontent" v-if="tab === 'About'">
       <h3>About</h3>
+      <p><a v-bind:href="nativeurl" target="_blank">Native UI on this device {{nativeurl}}</a></p>
       <p>A simple web app to go with OpenBekenIOT equipped devices by <a href="https://github.com/btsimonh">btsimonh</a></p>
       <p>This app is a pure javascript application written in VueJS as an SFC .vue component, and dynamically loaded from the device via a simple webpage.  The intent here is to be able to provide a rich UI and allow the device UI to remain simple (and small).</p>
       <p>Currently, it supports displaying logging from the device</p>
-      <test-controller></test-controller>
+      <info-controller></info-controller>
     </div>    
 
     <div class="tabcontent" v-if="tab === 'OTA'">
@@ -61,7 +62,7 @@
   components: {
     'ota-controller': window.getComponent('ota'),
     'filesystem-controller': window.getComponent('filesystem'),
-    'test-controller': window.getComponent('controller'),
+    'info-controller': window.getComponent('info'),
   },
       
     data: ()=>{
@@ -128,6 +129,7 @@
         },
     },
     mounted (){
+        this.nativeurl = window.device+'/';
         this.msg = 'fred';
         console.log('mounted');
         this.showlogs();
