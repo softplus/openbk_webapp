@@ -23,6 +23,7 @@ window.onload = ()=>{
         { name:'ota', path: window.root+'vue/ota.vue' },
         { name:'filesystem', path: window.root+'vue/filesystem.vue' },
         { name:'info', path: window.root+'vue/info.vue' },
+        { name:'flash', path: window.root+'vue/flash.vue' },
         { name:'myComponent', path: window.root+'vue/myComponent.vue' },
     ];
 

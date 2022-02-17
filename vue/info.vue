@@ -6,6 +6,7 @@
       <p>MAC Address: {{mac}}</p>
       <p>MQTT Server: {{mqtthost}}</p>
       <p>MQTT Topic: {{mqtttopic}}</p>
+      <p>WEBAPP Url root: {{webapp}}</p>
       <p v-if="error">Error: {{error}}</p>
     </div>
 </template>
@@ -21,6 +22,7 @@
         mac:'unknown',
         mqtthost:'unknown',
         mqtttopic:'unknown',
+        webapp:'unknown',
 
         error:'',
         interval: null,
@@ -39,6 +41,7 @@
                 this.mac        = res.mac; 
                 this.mqtthost   = res.mqtthost; 
                 this.mqtttopic  = res.mqtttopic; 
+                this.webapp     = res.webapp;
             })
             .catch(err => {
               this.error = err.toString();
