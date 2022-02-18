@@ -18,7 +18,7 @@
     
     <div class="tabcontent" v-if="tab === 'Config'">
       <h3>Config</h3>
-      <p>Config page.</p>
+      <info-controller></info-controller>
     </div>
     
     <div class="tabcontent" v-if="tab === 'Status'">
@@ -43,7 +43,6 @@
       <p>A simple web app to go with OpenBekenIOT equipped devices by <a href="https://github.com/btsimonh">btsimonh</a></p>
       <p>This app is a pure javascript application written in VueJS as an SFC .vue component, and dynamically loaded from the device via a simple webpage.  The intent here is to be able to provide a rich UI and allow the device UI to remain simple (and small).</p>
       <p>Currently, it supports displaying logging from the device</p>
-      <info-controller></info-controller>
     </div>    
 
     <div class="tabcontent" v-if="tab === 'OTA'">
@@ -189,6 +188,7 @@
       border: 1px solid #ccc;
       border-top: none;
       height:90%;
+      overflow:scroll
     }
     .radiused {
         border-radius:0.3em;
