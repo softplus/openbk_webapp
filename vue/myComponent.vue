@@ -23,6 +23,15 @@
     
     <div class="tabcontent" v-if="tab === 'Status'">
       <h3>Status</h3>
+        <div>
+          <!--<span v-for="item in channels" v-bind:key="item">{{item}}:{{channels[item]}} </span>-->
+          <div v-for="(item, key) in channels" v-bind:key="item">
+            <span v-bind:key="'span'+item">{{key}}:{{item}}</span>
+            <input v-bind:key="'input'+item" type="range" min="0" max="255" v-model="channels[key]" @input="channelchange(key)">
+          </div>
+        </div>
+
+<!--
         <div id="a" class="radiused" style="backgroundstyle">
            <input id="sl1" type="range" min="153" max="500" value="0" @change="change('t',0,value)" name="sl1">
         </div>
@@ -35,6 +44,7 @@
         <div id="c" class="radiused" style="background-image:linear-gradient(to right,#000,#fff);">
             <input id="sl4" type="range" min="0" max="100" value="100" @change="change('d',0,value)" name="sl4">
         </div>
+-->        
     </div>    
 
     <div class="tabcontent" v-if="tab === 'About'">
@@ -86,6 +96,8 @@
         OTAclass: '',
         Filesystemclass: '',
         Flashclass: '',
+
+        channels:{},
       }
     },
     methods:{
@@ -115,6 +127,76 @@
           console.log(v+i+'='+p);
           //la('&'+v+i+'='+p);
         },
+        getPins(cb){
+          let url = window.device+'/api/pins';
+          fetch(url)
+              .then(response => response.json())
+              .then(res => {
+                this.pins = res;
+                if (cb) cb();
+              })
+              .catch(err => {
+                this.error = err.toString();
+                console.error(err)
+              }); // Never forget the final catch!
+        },
+
+        getChannels(){
+          let url = window.device+'/api/channels';
+          fetch(url)
+              .then(response => response.json())
+              .then(res => {
+                this.channels = res;
+                console.log(this.channels);
+              })
+              .catch(err => {
+                this.error = err.toString();
+                console.error(err)
+              }); // Never forget the final catch!
+        },
+
+        setChannels(){
+          let url = window.device+'/api/channels';
+          let data = [];
+
+          let chanmax = 0;
+          for (let i = 0; i < 32; i++){
+            if (undefined !== this.channels[i]){
+              if (chanmax < i+1){
+                chanmax = i+1;
+              }
+            }
+          }
+
+
+          for (let i = 0; i < chanmax; i++){
+            if (undefined !== this.channels[i]){
+              data.push(+this.channels[i]);
+            } else {
+              data.push(0);
+            }
+          }
+
+          fetch(url, { 
+                        method: 'POST',
+                        body: JSON.stringify(data),
+              })
+              .then(response => response.json())
+              .then(res => {
+                this.getChannels();
+              })
+              .catch(err => {
+                this.error = err.toString();
+                console.error(err)
+              }); // Never forget the final catch!
+
+        },
+
+        channelchange(channel){
+          console.log(this.channels);
+          console.log('change chan '+JSON.stringify(channel)+' to '+this.channels[channel]);
+          this.setChannels();
+        },
         
         showlogs(){
             if (this.tab === 'Logs'){
@@ -140,6 +222,7 @@
         this.msg = 'fred';
         console.log('mounted');
         this.showlogs();
+        this.getChannels();
     }
   }
 //@ sourceURL=/vue/myComponent.vue
