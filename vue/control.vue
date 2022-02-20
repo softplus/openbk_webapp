@@ -23,20 +23,37 @@
           </div>
         </div>
 
-<!--
-        <div id="a" class="radiused" style="backgroundstyle">
-           <input id="sl1" type="range" min="153" max="500" value="0" @change="change('t',0,value)" name="sl1">
+
+        <div v-if="show_cw">
+          <span class="label">CW:</span>
+          <div class="radiused cw">
+            <input type="range" min="0" max="255" v-model="cw" @input="change()">
+          </div>
         </div>
-        <div id="b" class="radiused" style="background-image:linear-gradient(to right,#800,#f00 5%,#ff0 20%,#0f0 35%,#0ff 50%,#00f 65%,#f0f 80%,#f00 95%,#800);">
-            <input id="sl2" type="range" min="1" max="359" value="0" @change="change('h',0,value)" name="sl2">
+        <div v-if="show_ww">
+          <span class="label">WW:</span>
+          <div class="radiused ww">
+            <input type="range" min="0" max="255" v-model="ww" @input="change()">
+          </div>
         </div>
-        <div id="s" class="radiused" v-bind:style="backgroundstyle">
-            <input id="sl3" type="range" min="0" max="100" value="0" @change="change('n',0,value)" name="sl3">
+        <div v-if="show_rgb">
+          <span class="label">Hue:</span>
+          <div class="radiused hue">
+              <input type="range" min="1" max="359" v-model="hue" @input="change()">
+          </div>
         </div>
-        <div id="c" class="radiused" style="background-image:linear-gradient(to right,#000,#fff);">
-            <input id="sl4" type="range" min="0" max="100" value="100" @change="change('d',0,value)" name="sl4">
+        <div v-if="show_rgb">
+          <span class="label">Sat:</span>
+          <div class="radiused" v-bind:style="backgroundstyle">
+              <input type="range" min="0" max="100" v-model="saturation" @input="change('n',0,$event.value)">
+          </div>
         </div>
--->        
+        <div v-if="show_rgb">
+          <span class="label">Int:</span>
+          <div class="radiused lightness">
+              <input type="range" min="0" max="100" v-model="lightness" @input="change('d',0,$event.value)">
+          </div>
+        </div>
     </div>
 </template>
 
@@ -51,6 +68,30 @@
 
         error:'',
         interval: null,
+
+
+        backgroundstyle:{
+          backgroundImage:"linear-gradient(to right,#eff,#f81)"
+        },
+
+        pwmChannels:0,
+        show_rgb:false,
+        show_cw:false,
+        show_ww:false,
+        channelMap:{
+          r:0, g:0, b:0, cw:0, ww:0
+        },
+
+
+        cw:0,
+        ww:0,
+
+        hue:1,
+        saturation:0,
+        lightness:0,
+
+        setinprogress: false,
+        setrequired:false,
       }
     },
     methods:{
@@ -82,7 +123,18 @@
             }); // Never forget the final catch!
       },
 
+      setchannelsdeferred(){
+        if (this.setrequired){
+          return;
+        }
+        this.setrequired = true;
+        if (!this.setinprogress){
+          this.setChannels();
+        }
+      },
+
       setChannels(){
+        this.setrequired = false;
         let url = window.device+'/api/channels';
         let data = [];
 
@@ -104,15 +156,28 @@
           }
         }
 
+        this.setinprogress = true;
         fetch(url, { 
                       method: 'POST',
                       body: JSON.stringify(data),
             })
             .then(response => response.json())
             .then(res => {
-              this.getChannels();
+              this.setinprogress = false;
+              if (this.setrequired){
+                setTimeout(()=>{
+                  this.setChannels();
+                }, 100);
+              }
+              //this.getChannels();
             })
             .catch(err => {
+              this.setinprogress = false;
+              if (this.setrequired){
+                setTimeout(()=>{
+                  this.setChannels();
+                }, 100);
+              }
               this.error = err.toString();
               console.error(err)
             }); // Never forget the final catch!
@@ -122,7 +187,7 @@
       channelchange(channel){
         console.log(this.channels);
         console.log('change chan '+JSON.stringify(channel)+' to '+this.channels[channel]);
-        this.setChannels();
+        this.setchannelsdeferred();
       },
 
       channelclick(channel){
@@ -143,16 +208,111 @@
       
       getRolesForChannels(){
         let role = 0;
+        this.pwmChannels = [];
         if (this.pins.roles){
           for (let i = 0; i < this.pins.roles.length; i++){
             if (this.pins.roles[i]){
               let ch = this.pins.channels[i];
               let role = this.channelroles[ch] = this.pins.roles[i];
               this.channelrolenames[ch] = this.pins.rolenames[role];
+              if (this.channelrolenames[ch] === 'PWM'){
+                this.pwmChannels.push(ch);
+              }
             } 
           }
         }
+
+        switch(this.pwmChannels.length){
+          case 1:
+            this.show_cw = true;
+            this.channelMap.cw = this.pwmChannels[0];
+            break;
+          case 2:
+            this.show_cw = true;
+            this.show_ww = true;
+            this.channelMap.cw = this.pwmChannels[0];
+            this.channelMap.ww = this.pwmChannels[1];
+            break;
+          case 3:
+            this.show_rgb = true;
+            this.channelMap.r = this.pwmChannels[0];
+            this.channelMap.g = this.pwmChannels[1];
+            this.channelMap.b = this.pwmChannels[2];
+            break;
+          case 4:
+            this.show_rgb = true;
+            this.show_cw = true;
+            this.channelMap.r = this.pwmChannels[0];
+            this.channelMap.g = this.pwmChannels[1];
+            this.channelMap.b = this.pwmChannels[2];
+            this.channelMap.cw = this.pwmChannels[3];
+            break;
+          case 5:
+            this.show_rgb = true;
+            this.show_cw = true;
+            this.show_ww = true;
+            this.channelMap.r = this.pwmChannels[0];
+            this.channelMap.g = this.pwmChannels[1];
+            this.channelMap.b = this.pwmChannels[2];
+            this.channelMap.cw = this.pwmChannels[3];
+            this.channelMap.ww = this.pwmChannels[4];
+            break;
+        }
+
       },
+
+      change(v,i,p){
+        let rgb = this.hslToRgb(+this.hue/360, +this.saturation/100, +this.lightness/100);
+
+        this.channels[this.channelMap.r] = rgb[0];
+        this.channels[this.channelMap.g] = rgb[1];
+        this.channels[this.channelMap.b] = rgb[2];
+        this.channels[this.channelMap.ww] = this.ww;
+        this.channels[this.channelMap.cw] = this.cw;
+        this.setchannelsdeferred();
+
+        this.backgroundstyle.backgroundImage= 
+          'linear-gradient(to right,rgb('+this.lightness+'%,'+this.lightness+'%,'+this.lightness+'%),hsl('+this.hue+',100%,50%))'
+
+/*
+        if(document.getElementById('s')){
+          if(v=='h'||v=='d'){
+            var sl=document.getElementById('sl4').value;
+            this.backgroundstyle.backgroundImage= 
+              'linear-gradient(to right,rgb('+this.lightness+'%,'+this.lightness+'%,'+this.lightness+'%),hsl('+this.hue+',100%,50%))'
+          }
+        }
+        console.log(v+i+'='+p);
+        */
+        //la('&'+v+i+'='+p);
+      },
+
+      hslToRgb(h, s, l){
+        var r, g, b;
+
+        if(s == 0){
+            r = g = b = l; // achromatic
+        }else{
+          var hue2rgb = function hue2rgb(p, q, t){
+            if(t < 0) t += 1;
+            if(t > 1) t -= 1;
+            if(t < 1/6) return p + (q - p) * 6 * t;
+            if(t < 1/2) return q;
+            if(t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+            return p;
+          }
+
+          var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+          var p = 2 * l - q;
+          r = hue2rgb(p, q, h + 1/3);
+          g = hue2rgb(p, q, h);
+          b = hue2rgb(p, q, h - 1/3);
+        }
+
+        return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
+      },
+
+
     },
     mounted (){
         this.msg = 'fred';
@@ -168,10 +328,35 @@
 </script>
 
 <style scoped>
+  .label {
+    display:inline-block;
+    width:9%;
+  }
+  .radiused {
+    display:inline-block;
+    border-radius:0.3em;
+    padding:2px;
+    margin:6px 2px;
+    width:90%;
+  }
+
   .set {
     background-color: green;
   }  
   .unset {
     background-color: white;
   }  
+
+  .cw {
+    background-image:linear-gradient(to right,#000,#fff);
+  }
+  .ww {
+    background-image:linear-gradient(to right,#000,#ff7);
+  }
+  .hue {
+    background-image:linear-gradient(to right,#800,#f00 5%,#ff0 20%,#0f0 35%,#0ff 50%,#00f 65%,#f0f 80%,#f00 95%,#800);
+  }
+  .lightness {
+    background-image:linear-gradient(to right,#000,#fff);
+  }
 </style>

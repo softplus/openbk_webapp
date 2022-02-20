@@ -66,9 +66,6 @@
         color: 'blue',
         logs: '',
         tab: 'Config',
-        backgroundstyle:{
-            backgroundImage:"linear-gradient(to right,#eff,#f81)"
-        },
         Logsclass:'',
         Aboutclass:'',
         Configclass:'active',
@@ -94,18 +91,6 @@
             this[name+'class'] = 'active';
         },       
         
-
-        change(v,i,p){
-          if(document.getElementById('s')){
-            if(v=='h'||v=='d'){
-              var sl=document.getElementById('sl4').value;
-              this.backgroundstyle.backgroundImage= 
-                'linear-gradient(to right,rgb('+sl+'%,'+sl+'%,'+sl+'%),hsl('+document.getElementById('sl2').value+',100%,50%))'
-            }
-          }
-          console.log(v+i+'='+p);
-          //la('&'+v+i+'='+p);
-        },
 
         showlogs(){
             if (this.tab === 'Logs'){
@@ -180,11 +165,6 @@
       border-top: none;
       height:90%;
       overflow:scroll
-    }
-    .radiused {
-        border-radius:0.3em;
-        padding:2px;
-        margin:6px 2px;
     }
     input[type=range] {
         width:99%;
