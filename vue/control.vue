@@ -273,6 +273,7 @@
             } 
           }
         }
+        this.pwmChannels.sort();
 
         switch(this.pwmChannels.length){
           case 1:
