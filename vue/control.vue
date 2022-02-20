@@ -10,7 +10,7 @@
                 :class="item?'set':'unset'" 
                 @click="channelclick(key)"
               >{{channels[key]?'Off':'On'}}</button>
-              <span v-bind:key="'span'+item">{{key}}:{{item}} role {{channelrolenames[+key]}}</span>
+              <span v-bind:key="'span'+item">{{key}}:{{item}} role {{channelrolenames[+key]}}{{channeltag[+key]}}</span>
               <input 
                 v-if="channelrolenames[+key] === 'PWM'" 
                 v-bind:key="'input'+item" 
@@ -45,13 +45,13 @@
         <div v-if="show_rgb">
           <span class="label">Sat:</span>
           <div class="radiused" v-bind:style="backgroundstyle">
-              <input type="range" min="0" max="100" v-model="saturation" @input="change('n',0,$event.value)">
+              <input type="range" min="0" max="100" v-model="saturation" @input="change()">
           </div>
         </div>
         <div v-if="show_rgb">
           <span class="label">Int:</span>
           <div class="radiused lightness">
-              <input type="range" min="0" max="100" v-model="lightness" @input="change('d',0,$event.value)">
+              <input type="range" min="0" max="100" v-model="lightness" @input="change()">
           </div>
         </div>
     </div>
@@ -65,6 +65,7 @@
         channels:{},
         channelroles:[],
         channelrolenames:[],
+        channeltag:[],
 
         error:'',
         interval: null,
@@ -115,12 +116,62 @@
             .then(response => response.json())
             .then(res => {
               this.channels = res;
+              this.setHSL();
+
               console.log(this.channels);
             })
             .catch(err => {
               this.error = err.toString();
               console.error(err)
             }); // Never forget the final catch!
+      },
+
+      setHSL(){
+        let hsl = [];
+        switch(this.pwmChannels.length){
+          case 1:
+            this.cw = this.channels[this.pwmChannels[0]]; 
+            break;
+          case 2:
+            this.cw = this.channels[this.pwmChannels[0]]; 
+            this.ww = this.channels[this.pwmChannels[1]]; 
+            break;
+          case 3:
+            hsl = rgbToHsl(
+              this.channels[this.pwmChannels[0]], 
+              this.channels[this.pwmChannels[1]], 
+              this.channels[this.pwmChannels[2]]);
+
+            this.hue = hsl[0] * 360;
+            this.saturation = hsl[1]*100; 
+            this.lightness = hsl[2]*100; 
+            break;
+          case 4:
+            hsl = this.rgbToHsl(
+              this.channels[this.pwmChannels[0]], 
+              this.channels[this.pwmChannels[1]], 
+              this.channels[this.pwmChannels[2]]);
+
+            this.hue = hsl[0] * 360;
+            this.saturation = hsl[1]*100; 
+            this.lightness = hsl[2]*100; 
+            this.cw = this.channels[this.pwmChannels[3]]; 
+            break;
+          case 5:
+            hsl = this.rgbToHsl(
+              this.channels[this.pwmChannels[0]], 
+              this.channels[this.pwmChannels[1]], 
+              this.channels[this.pwmChannels[2]]);
+
+            this.hue = hsl[0] * 360;
+            this.saturation = hsl[1]*100; 
+            this.lightness = hsl[2]*100; 
+            this.cw = this.channels[this.pwmChannels[3]]; 
+            this.ww = this.channels[this.pwmChannels[4]]; 
+            break;
+        }
+        this.backgroundstyle.backgroundImage= 
+          'linear-gradient(to right,rgb('+this.lightness+'%,'+this.lightness+'%,'+this.lightness+'%),hsl('+this.hue+',100%,50%))'
       },
 
       setchannelsdeferred(){
@@ -188,6 +239,7 @@
         console.log(this.channels);
         console.log('change chan '+JSON.stringify(channel)+' to '+this.channels[channel]);
         this.setchannelsdeferred();
+        this.setHSL();
       },
 
       channelclick(channel){
@@ -226,36 +278,51 @@
           case 1:
             this.show_cw = true;
             this.channelMap.cw = this.pwmChannels[0];
+            this.channeltag[this.pwmChannels[0]] = '-CW';
             break;
           case 2:
             this.show_cw = true;
             this.show_ww = true;
             this.channelMap.cw = this.pwmChannels[0];
+            this.channeltag[this.pwmChannels[0]] = '-Cool White';
             this.channelMap.ww = this.pwmChannels[1];
+            this.channeltag[this.pwmChannels[1]] = '-Warm White';
             break;
           case 3:
             this.show_rgb = true;
             this.channelMap.r = this.pwmChannels[0];
+            this.channeltag[this.pwmChannels[0]] = '-Red';
             this.channelMap.g = this.pwmChannels[1];
+            this.channeltag[this.pwmChannels[1]] = '-Green';
             this.channelMap.b = this.pwmChannels[2];
+            this.channeltag[this.pwmChannels[2]] = '-Blue';
             break;
           case 4:
             this.show_rgb = true;
             this.show_cw = true;
             this.channelMap.r = this.pwmChannels[0];
+            this.channeltag[this.pwmChannels[0]] = '-Red';
             this.channelMap.g = this.pwmChannels[1];
+            this.channeltag[this.pwmChannels[1]] = '-Green';
             this.channelMap.b = this.pwmChannels[2];
+            this.channeltag[this.pwmChannels[2]] = '-Blue';
             this.channelMap.cw = this.pwmChannels[3];
+            this.channeltag[this.pwmChannels[0]] = '-Cool White';
             break;
           case 5:
             this.show_rgb = true;
             this.show_cw = true;
             this.show_ww = true;
             this.channelMap.r = this.pwmChannels[0];
+            this.channeltag[this.pwmChannels[0]] = '-Red';
             this.channelMap.g = this.pwmChannels[1];
+            this.channeltag[this.pwmChannels[1]] = '-Green';
             this.channelMap.b = this.pwmChannels[2];
+            this.channeltag[this.pwmChannels[2]] = '-Blue';
             this.channelMap.cw = this.pwmChannels[3];
+            this.channeltag[this.pwmChannels[3]] = '-Cool White';
             this.channelMap.ww = this.pwmChannels[4];
+            this.channeltag[this.pwmChannels[4]] = '-Warm White';
             break;
         }
 
@@ -312,7 +379,26 @@
         return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
       },
 
+      rgbToHsl(r, g, b){
+        r /= 255, g /= 255, b /= 255;
+        var max = Math.max(r, g, b), min = Math.min(r, g, b);
+        var h, s, l = (max + min) / 2;
 
+        if(max == min){
+          h = s = 0; // achromatic
+        }else{
+          var d = max - min;
+          s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+          switch(max){
+            case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+            case g: h = (b - r) / d + 2; break;
+            case b: h = (r - g) / d + 4; break;
+          }
+          h /= 6;
+        }
+
+        return [h, s, l];
+      }
     },
     mounted (){
         this.msg = 'fred';
