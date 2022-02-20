@@ -1,22 +1,26 @@
 <template>
-    <div>
-      <p>UpTime: {{uptime_s}}s</p>
-      <p>Build: {{build}}</p>
-      <p>IP Address: {{ip}}</p>
-      <p>MAC Address: {{mac}}</p>
-      <p>MQTT Server: {{mqtthost}}</p>
-      <p>MQTT Topic: {{mqtttopic}}</p>
-      <p>WEBAPP Url root: {{webapp}}</p>
-      <p v-if="error">Error: {{error}}</p>
-      <p>Pin Settings:</p>
-      <div v-for="(role, index) in pins.roles" :key="index">
-        <span>{{index}}</span>
-        <select v-model="pins.roles[index]">
-          <option v-for="(name, index2) in pins.rolenames" :value="index2" :key="index2" :selected="(role == index2)">{{name}}</option>
-        </select>
-        <input type="number" min="0" max="32" step="1" v-model="pins.channels[index]">
+    <div class="container">
+      <div class="left">
+        <p>UpTime: {{uptime_s}}s</p>
+        <p>Build: {{build}}</p>
+        <p>IP Address: {{ip}}</p>
+        <p>MAC Address: {{mac}}</p>
+        <p>MQTT Server: {{mqtthost}}</p>
+        <p>MQTT Topic: {{mqtttopic}}</p>
+        <p>WEBAPP Url root: {{webapp}}</p>
+        <p v-if="error">Error: {{error}}</p>
       </div>
-      <button @click="savePins">Save Pins</button>
+      <div class="right">
+        <p>Pin Settings:</p>
+        <div v-for="(role, index) in pins.roles" :key="index">
+          <span>{{index}}</span>
+          <select v-model="pins.roles[index]">
+            <option v-for="(name, index2) in pins.rolenames" :value="index2" :key="index2" :selected="(role == index2)">{{name}}</option>
+          </select>
+          <input type="number" min="0" max="32" step="1" v-model="pins.channels[index]">
+        </div>
+        <button @click="savePins">Save Pins</button>
+      </div>
     </div>
 </template>
 
@@ -115,9 +119,25 @@
     }
 
   }
-//@ sourceURL=/vue/controller.vue
+//@ sourceURL=/vue/info.vue
 </script>
 
 <style scoped>
-  
+  .container {
+    position:relative;
+  }
+
+  .left {
+    position:absolute;
+    left:0;
+    top:0;
+    width:50%;
+  }  
+
+  .right {
+    position:absolute;
+    left:50%;
+    top:0;
+    width:50%;
+  }
 </style>
