@@ -16,7 +16,7 @@
                 v-bind:key="'input'+item" 
                 type="range" 
                 min="0" 
-                max="255" 
+                max="100" 
                 v-model="channels[key]" 
                 @input="channelchange(key)">
             </div>
@@ -27,13 +27,13 @@
         <div v-if="show_cw">
           <span class="label">CW:</span>
           <div class="radiused cw">
-            <input type="range" min="0" max="255" v-model="cw" @input="change()">
+            <input type="range" min="0" max="100" v-model="cw" @input="change()">
           </div>
         </div>
         <div v-if="show_ww">
           <span class="label">WW:</span>
           <div class="radiused ww">
-            <input type="range" min="0" max="255" v-model="ww" @input="change()">
+            <input type="range" min="0" max="100" v-model="ww" @input="change()">
           </div>
         </div>
         <div v-if="show_rgb">
@@ -138,9 +138,9 @@
             break;
           case 3:
             hsl = rgbToHsl(
-              this.channels[this.pwmChannels[0]], 
-              this.channels[this.pwmChannels[1]], 
-              this.channels[this.pwmChannels[2]]);
+              this.channels[this.pwmChannels[0]]/100*255, 
+              this.channels[this.pwmChannels[1]]/100*255, 
+              this.channels[this.pwmChannels[2]]/100*255);
 
             this.hue = hsl[0] * 360;
             this.saturation = hsl[1]*100; 
@@ -246,7 +246,7 @@
         if (this.channels[channel]) {
           this.channels[channel] = 0;
         } else {
-          this.channels[channel] = 255;
+          this.channels[channel] = 100;
         }
         this.channelchange(channel);
       },
@@ -261,6 +261,7 @@
       getRolesForChannels(){
         let role = 0;
         this.pwmChannels = [];
+        console.log('pins:', this.pins);
         if (this.pins.roles){
           for (let i = 0; i < this.pins.roles.length; i++){
             if (this.pins.roles[i]){
@@ -332,9 +333,9 @@
       change(v,i,p){
         let rgb = this.hslToRgb(+this.hue/360, +this.saturation/100, +this.lightness/100);
 
-        this.channels[this.channelMap.r] = rgb[0];
-        this.channels[this.channelMap.g] = rgb[1];
-        this.channels[this.channelMap.b] = rgb[2];
+        this.channels[this.channelMap.r] = ((rgb[0]/255)*100)>>0;
+        this.channels[this.channelMap.g] = ((rgb[1]/255)*100)>>0;
+        this.channels[this.channelMap.b] = ((rgb[2]/255)*100)>>0;
         this.channels[this.channelMap.ww] = this.ww;
         this.channels[this.channelMap.cw] = this.cw;
         this.setchannelsdeferred();
