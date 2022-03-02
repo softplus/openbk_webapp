@@ -160,6 +160,7 @@
     
     /* Style the tab content */
     .tabcontent {
+      position: relative;      
       padding: 6px 12px;
       border: 1px solid #ccc;
       border-top: none;
