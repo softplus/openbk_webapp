@@ -13,7 +13,8 @@
     
     <!-- Tab content -->
     <div class="tabcontent" v-if="tab === 'Logs'">
-      <div style="height:80%; overflow:scroll;" id="logs"><pre>{{logs}}</pre></div>
+      <h3>Logs</h3>
+      <logs-controller></logs-controller>
     </div>
     
     <div class="tabcontent" v-if="tab === 'Config'">
@@ -58,6 +59,7 @@
     'info-controller': window.getComponent('info'),
     'flash-controller': window.getComponent('flash'),
     'control-controller': window.getComponent('control'),
+    'logs-controller': window.getComponent('logs'),
   },
       
     data: ()=>{
@@ -91,31 +93,11 @@
             this[name+'class'] = 'active';
         },       
         
-
-        showlogs(){
-            if (this.tab === 'Logs'){
-              let url = window.device+'/lograw';
-              fetch(url)
-                .then(response => response.text())
-                .then(data => {
-                    this.logs += data;
-                    let splt = this.logs.split('\n');
-                    while (splt.length > 400){
-                        splt.shift();
-                    }
-                    this.logs = splt.join('\n');
-                    setTimeout(()=>{this.showlogs();}, 1000);
-                });
-            } else {
-                setTimeout(()=>{this.showlogs();}, 1000);
-            }
-        },
     },
     mounted (){
         this.nativeurl = window.device+'/';
         this.msg = 'fred';
         console.log('mounted');
-        this.showlogs();
     }
   }
 //@ sourceURL=/vue/myComponent.vue

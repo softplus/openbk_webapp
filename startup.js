@@ -25,6 +25,7 @@ window.onload = ()=>{
         { name:'info', path: window.root+'vue/info.vue' },
         { name:'flash', path: window.root+'vue/flash.vue' },
         { name:'control', path: window.root+'vue/control.vue' },
+        { name:'logs', path: window.root+'vue/logs.vue' },
         { name:'myComponent', path: window.root+'vue/myComponent.vue' },
     ];
 
