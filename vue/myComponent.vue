@@ -12,7 +12,7 @@
     </div>
     
     <!-- Tab content -->
-    <div class="tabcontent" v-if="tab === 'Logs'">
+    <div class="tabcontent" :style="(tab === 'Logs')?null:'display:none;'">
       <h3>Logs</h3>
       <logs-controller></logs-controller>
     </div>
