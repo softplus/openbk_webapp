@@ -1,8 +1,10 @@
 <template>
     <div class="fullheight">
       <div ref="logs" style="height:80%; overflow:scroll;" id="logs"><pre>{{logs}}</pre></div>
-      <input v-model="cmd" type="text">
-      <button @click="send">Send</button>
+      <form @submit="send($event)">
+        <input v-model="cmd" id="obkcommand" type="text" autocomplete="on" style="width:60%;">
+        <input type="submit">
+      </form>
     </div>
 </template>
 
@@ -15,7 +17,8 @@
       }
     },
     methods:{
-        send(){
+        send(ev){
+            ev.preventDefault();
             let url = window.device+'/api/cmnd';
             fetch(url, {body:this.cmd, method:'POST'})
             .then(response => response.text())
