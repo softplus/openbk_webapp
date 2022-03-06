@@ -1,17 +1,29 @@
 <template>
     <div class="fullheight">
       <div ref="logs" style="height:80%; overflow:scroll;" id="logs"><pre>{{logs}}</pre></div>
-      <label for="pause">Pause</label><input type="checkbox" id="pause" name="pause" v-model="paused">
-      <button @click="clear">Clear</button>
+
+      <label for="pause">Pause<input  class="checkbox" type="checkbox" id="pause" name="pause" v-model="paused"></label>
+      
+      <button class="feature" @click="clear">Clear</button>
       <br />
 
-      <label :for="item" v-for="(item, index) in logfeaturenames" :key="item">{{item}}
-        <input type="checkbox" :id="item" :name="item" v-model="logfeatures[index]" @click="setfeature(index, $event)">
+      <label>Log Features:
+        <label class="feature" :for="item" v-for="(item, index) in logfeaturenames" :key="item">{{item}}
+            <input class="checkbox" type="checkbox" :id="item" :name="item" v-model="logfeatures[index]" @click="setfeature(index, $event)">
+        </label>
       </label>
       <br />
+      <label>Log Level:
+        <select v-model="loglevel">
+            <option v-for="(item,index) of loglevelnames" :value="index" :key="index">{{item}}</option>
+        </select>
+      </label>
 
       <form @submit="send($event)">
-        <input v-model="cmd" id="obkcommand" type="text" autocomplete="on" style="width:60%;">
+        <label>Cmd:
+          <input v-model="cmd" id="obkcommand" type="text" autocomplete="on" style="width:60%;">
+        </label>
+
         <input type="submit">
       </form>
     </div>
@@ -37,10 +49,57 @@
             "LFS:", // = 9
             "CMD:", // = 10
         ],
-        logfeatures:[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+        logfeatures:[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+
+        loglevel:6,
+        loglevelnames:[
+        ],
+        initialised: false,
       }
     },
+    watch:{
+        loglevel() {
+            if (this.initialised) this.setlevel(this.loglevel);
+        },
+    },
     methods:{
+        readlogconfig(){
+            let url = window.device+'/api/logconfig';
+            fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                console.log('logconfig',data);
+                this.logfeaturenames = data.featurenames;
+                this.loglevelnames = data.levelnames;
+                for (let i = 0; i < 31; i++){
+                    if ((data.features >> i) & 1){
+                        this.logfeatures[i] = 1;
+                    } else {
+                        this.logfeatures[i] = 0;
+                    }
+                }
+                this.loglevel = data.level;
+                this.initialised = true;
+
+            })
+            .catch((e)=>{
+                console.error(e);
+            })
+        },
+
+        setlevel(n){
+            let url = window.device+'/api/cmnd';
+            let cmnd = 'loglevel '+n;
+            fetch(url, {body:cmnd, method:'POST'})
+            .then(response => response.text())
+            .then(data => {
+                console.log(data);
+            })
+            .catch((e)=>{
+                console.error(e);
+            })
+        },
+
         setfeature(index, ev){
             let enable = ev.currentTarget.checked;
             let url = window.device+'/api/cmnd';
@@ -114,6 +173,7 @@
     },
     mounted (){
         console.log('mounted');
+        this.readlogconfig();
         this.showlogs();
     },
 
@@ -133,5 +193,13 @@
 .fullheight {
     height:95%;
 }
-  
+
+.feature {
+    margin-left:2em
+}
+
+.checkbox {
+    vertical-align: bottom;
+}
+
 </style>
