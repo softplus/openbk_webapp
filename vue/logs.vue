@@ -3,12 +3,13 @@
       <div ref="logs" style="height:80%; overflow:scroll;" id="logs"><pre>{{logs}}</pre></div>
       <label for="pause">Pause</label><input type="checkbox" id="pause" name="pause" v-model="paused">
       <button @click="clear">Clear</button>
+      <br />
 
       <label :for="item" v-for="(item, index) in logfeaturenames" :key="item">{{item}}
         <input type="checkbox" id="pause" name="pause" v-model="logfeatures[index]" @click="setfeature(index, this.checked)">
       </label>
+      <br />
 
-      <label for="pause">Pause</label><input type="checkbox" id="pause" name="pause" v-model="paused">
       <form @submit="send($event)">
         <input v-model="cmd" id="obkcommand" type="text" autocomplete="on" style="width:60%;">
         <input type="submit">
