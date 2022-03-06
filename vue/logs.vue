@@ -6,7 +6,7 @@
       <br />
 
       <label :for="item" v-for="(item, index) in logfeaturenames" :key="item">{{item}}
-        <input type="checkbox" id="pause" name="pause" v-model="logfeatures[index]" @click="setfeature(index, this.checked)">
+        <input type="checkbox" :id="item" :name="item" v-model="logfeatures[index]" @click="setfeature(index, $event)">
       </label>
       <br />
 
@@ -41,7 +41,8 @@
       }
     },
     methods:{
-        setfeature(index, enable){
+        setfeature(index, ev){
+            let enable = ev.currentTarget.checked;
             let url = window.device+'/api/cmnd';
             let cmnd = 'logfeature '+index+' '+(enable?'1':'0');
             fetch(url, {body:cmnd, method:'POST'})
