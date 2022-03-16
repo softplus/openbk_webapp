@@ -5,14 +5,14 @@
           <div v-for="(item, key) in channels" v-bind:key="item">
             <div >
               <button 
-                v-if="(channelrolenames[+key] === 'Rel') || (channelrolenames[+key] === 'Rel_n') || (channelrolenames[+key] === 'PWM')"
+                v-if="(outputchannelrolenames[+key] === 'Rel') || (outputchannelrolenames[+key] === 'Rel_n') || (outputchannelrolenames[+key] === 'PWM')"
                 v-bind:key="'button'+item" 
                 :class="item?'set':'unset'" 
                 @click="channelclick(key)"
               >{{channels[key]?'Off':'On'}}</button>
-              <span v-bind:key="'span'+item">{{key}}:{{item}} role {{channelrolenames[+key]}}{{channeltag[+key]}}</span>
+              <span v-bind:key="'span'+item">{{key}}:{{item}} role {{outputchannelrolenames[+key]}}{{channeltag[+key]}}</span>
               <input 
-                v-if="channelrolenames[+key] === 'PWM'" 
+                v-if="outputchannelrolenames[+key] === 'PWM'" 
                 v-bind:key="'input'+item" 
                 type="range" 
                 min="0" 
@@ -63,8 +63,10 @@
       return {
         pins:{ rolenames:[], roles:[], channels:[] },
         channels:{},
-        channelroles:[],
-        channelrolenames:[],
+        outputchannelroles:[],
+        outputchannelrolenames:[],
+        inputchannelroles:[],
+        inputchannelrolenames:[],
         channeltag:[],
 
         error:'',
@@ -266,10 +268,30 @@
           for (let i = 0; i < this.pins.roles.length; i++){
             if (this.pins.roles[i]){
               let ch = this.pins.channels[i];
-              let role = this.channelroles[ch] = this.pins.roles[i];
-              this.channelrolenames[ch] = this.pins.rolenames[role];
-              if (this.channelrolenames[ch] === 'PWM'){
-                this.pwmChannels.push(ch);
+              let role = this.pins.roles[i];
+              let rolename = this.pins.rolenames[role];
+              switch(rolename){
+                case 	"Rel":
+                case 	"Rel_n":
+                case 	"LED":
+                case 	"LED_n":
+                case 	"PWM":
+                case 	"Wifi LED":
+                case 	"Wifi LED_n":
+                  this.outputchannelroles[ch] = role;
+                  this.outputchannelrolenames[ch] = rolename;
+                  if (this.outputchannelrolenames[ch] === 'PWM'){
+                    this.pwmChannels.push(ch);
+                  }
+                  break;
+
+                case 	"Btn_Tgl_All":
+                case 	"Btn_Tgl_All_n":
+                case 	"Btn":
+                case 	"Btn_n":
+                  this.inputchannelroles[ch] = role;
+                  this.inputchannelrolenames[ch] = rolename;
+                  break;
               }
             } 
           }
