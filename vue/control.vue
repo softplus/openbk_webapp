@@ -248,11 +248,15 @@
         if (this.channels[channel]) {
           this.channels[channel] = 0;
         } else {
+          if (this.outputchannelrolenames[channel] === 'Rel' || this.outputchannelrolenames[channel] === 'Rel_n'){
+          this.channels[channel] = 1;
+                  } else {
           this.channels[channel] = 100;
+                  }
         }
         this.channelchange(channel);
       },
-
+      
       setupView(){
         this.getPins(()=>{
           this.getRolesForChannels();
