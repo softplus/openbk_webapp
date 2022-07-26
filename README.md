@@ -4,7 +4,10 @@ This repo publishes a simple javascript webb app to
 
 https://openbekeniot.github.io/webapp/
 
-The web app is initialted by a very simple webpage on the device at http://(IP)/app
+The code is in the gh-pages branch!
+
+
+The web app is initialed by a very simple webpage on the device at http://(IP)/app
 
 Currently the address the device uses is hardcoded, but soon there will be a configuration, so you can host locally on your LAN for more security.
 
