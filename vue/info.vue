@@ -8,6 +8,7 @@
         <p>MQTT Server: {{mqtthost}}</p>
         <p>MQTT Topic: {{mqtttopic}}</p>
         <p>WEBAPP Url root: {{webapp}}</p>
+        <p>Chipset: {{chipset}}</p>
         <p v-if="error">Error: {{error}}</p>
       </div>
       <div class="right">
@@ -36,6 +37,7 @@
         mqtthost:'unknown',
         mqtttopic:'unknown',
         webapp:'unknown',
+        chipset:'unknown',
 
         pins:{ rolenames:[], roles:[], channels:[] },
 
@@ -57,6 +59,7 @@
                 this.mqtthost   = res.mqtthost; 
                 this.mqtttopic  = res.mqtttopic; 
                 this.webapp     = res.webapp;
+                this.chipset    = res.chipset;
             })
             .catch(err => {
               this.error = err.toString();
