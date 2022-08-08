@@ -9,7 +9,7 @@
                 v-bind:key="'button'+item" 
                 :class="item?'set':'unset'" 
                 @click="channelclick(key)"
-              >{{channels[key]?'Off':'On'}}</button>
+              >{{channels[key]?'On':'Off'}}</button>
               <span v-bind:key="'span'+item">{{key}}:{{item}} role {{outputchannelrolenames[+key]}}{{channeltag[+key]}}</span>
               <input 
                 v-if="outputchannelrolenames[+key] === 'PWM'" 
