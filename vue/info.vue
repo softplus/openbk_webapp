@@ -52,8 +52,9 @@
                   <br/><br/>
                 </div>
 
-                <button @click="useDevice">Use device</button>
+                <button @click="useDevice">Copy Device Pins</button>
               </div>
+              <div v-else>Pick a device from the dropdown.</div>
               
             </td>
             <td style="vertical-align:top; padding-left:5px;">
