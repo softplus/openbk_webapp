@@ -1,401 +1,403 @@
 [
-    {
-      "name": ""
-    },
-  
-    {
-      "name": "WiFi DIY Switch ZN268131",
-      "chip": "BK7231T",
-      "board": "WB2S",
-      "pins": {
-        "6": "Relay;1",
-        "7": "WifiLED_n;1",
-        "10": "Button;1",
-        "26": "TglChanOnTgl;1"
-      }
-    },
-  
-    {
-      "name": "Magic Home LED RGB IR Strip",
-      "chip": "BL602",
-      "pins": {
-        "4": "PWM;0",
-        "3": "PWM;1",
-        "21": "PWM;2"
-      },
-      "urls": ["https://www.elektroda.pl/rtvforum/topic3881416.html"]
-    },
-  
-    {
-      "name": "Tuya SmartSwitch SW01 16A",
-      "chip": "BK7231T",
-      "pins": {
-        "7": "Relay;1",
-        "26": "Button;1"
-      },
-      "urls": ["https://www.elektroda.pl/rtvforum/topic3804553.html"]
-    },
-  
-    {
-      "name": "Tuya SmartLife 4CH 10A",
-      "chip": "BK7231T",
-      "pins": {
-        "7": "Button;1",
-        "8": "Button;2",
-        "9": "Button;3",
-        "1": "Button;4",
-        "14": "Relay;1",
-        "6": "Relay;2",
-        "24": "Relay;3",
-        "26": "Relay;4"
-      },
-      "urls": ["https://www.elektroda.pl/rtvforum/topic3822484.html"]
-    },
-  
-    {
-      "name": "uya E27 LED RGBCW 5PWMs",
-      "chip": "BK7231N",
-      "pins": {
-        "26": "PWM;1",
-        "8": "PWM;2",
-        "7": "PWM;3",
-        "9": "PWM;4",
-        "6": "PWM;5"
-      },
-      "urls": [
-        "https://www.elektroda.pl/rtvforum/viewtopic.php?t=3880540&highlight="
-      ]
-    },
-  
-    {
-      "name": "IntelligentLife NF101A",
-      "chip": "BK7231T",
-      "pins": {
-        "24": "Relay;1",
-        "6": "Button;1"
-      },
-      "urls": [
-        "https://www.elektroda.pl/rtvforum/viewtopic.php?p=19743751#19743751"
-      ]
-    },
-  
-    {
-      "name": "Tuya LED Dimmer Single Channel PWM",
-      "chip": "BK7231T",
-      "board": "WB3S",
-      "pins": {
-        "8": "PWM;1",
-        "1": "Button;1"
-      },
-      "urls": ["https://www.elektroda.pl/rtvforum/topic3798114.html"]
-    },
-  
-    {
-      "name": "Calex RGBWW LED Dimmer Five Channel PWM",
-      "chip": "BK7231S",
-      "pins": {
-        "7": "PWM;1",
-        "8": "PWM;2",
-        "6": "PWM;3",
-        "24": "PWM;4",
-        "26": "PWM;5"
-      }
-    },
-  
-    {
-      "name": "Calex UK power strip 900018.1 v1.0 UK",
-      "chip": "BK7231T",
-      "pins": {
-        "6": "Relay;5",
-        "7": "Relay;2",
-        "8": "Relay;3",
-        "9": "Relay;1",
-        "26": "Relay;4",
-        "14": "Button;1",
-        "10": "LED;1",
-        "24": "LED;2"
-      }
-    },
-  
-    {
-      "name": "Arlec CCT LED Downlight ALD029CHA",
-      "chip": "BK7231T",
-      "pins": {
-        "6": "PWM;4",
-        "24": "PWM;5"
-      },
-      "urls": [
-        "https://www.bunnings.com.au/arlec-grid-connect-smart-9w-cct-led-downlight_p0168694"
-      ]
-    },
-  
-    {
-      "name": "Arlec RGB+CCT LED Downlight ALD092RHA",
-      "chip": "BK7231T",
-      "pins": {
-        "8": "PWM;1",
-        "7": "PWM;2",
-        "9": "PWM;3",
-        "6": "PWM;4",
-        "24": "PWM;5"
-      },
-      "urls": [
-        "https://www.bunnings.com.au/arlec-grid-connect-smart-9w-rgb-cct-led-downlight_p0168695"
-      ]
-    },
-  
-    {
-      "name": "CasaLife CCT LED Downlight SMART-AL2017-TGTS",
-      "chip": "BK7231T",
-      "pins": {
-        "7": "PWM;0",
-        "8": "PWM;1"
-      },
-      "urls": [
-        "https://www.elektroda.com/rtvforum/viewtopic.php?p=20123466#20123466"
-      ]
-    },
-  
-    {
-      "name": "Nedis WIFIPO120FWT SmartPlug 16A",
-      "chip": "BK7231T",
-      "pins": {
-        "6": "LED;1",
-        "10": "Button;1",
-        "26": "Relay_n;1"
-      },
-      "urls": ["https://www.elektroda.pl/rtvforum/topic3804553.html"]
-    },
-  
-    {
-      "name": "Nedis WIFIP130FWT SmartPlug 10A",
-      "chip": "BK7231T",
-      "pins": {
-        "6": "LED;1",
-        "10": "Button;1",
-        "26": "Relay;1"
-      },
-      "urls": ["https://www.elektroda.pl/rtvforum/topic3804553.html"]
-    },
-  
-    {
-      "name": "Emax Home EDU8774 SmartPlug 16A",
-      "chip": "BK7231T",
-      "pins": {
-        "10": "Button;1",
-        "24": "LED_n;1",
-        "26": "Relay;1"
-      },
-      "urls": ["https://www.elektroda.pl/rtvforum/topic3804553.html"]
-    },
-  
-    {
-      "name": "LSPA9 power metering plug BL0942 version",
-      "chip": "BK7231N",
-      "board": "CB2S",
-      "pins": {
-        "6": "Button;1",
-        "8": "WifiLED_n;1",
-        "26": "Relay;1"
-      },
-      "urls": [
-        "https://www.elektroda.pl/rtvforum/viewtopic.php?t=3887748&highlight="
-      ]
-    },
-  
-    {
-      "name": "Qiachip Smart Switch",
-      "chip": "BK7231N",
-      "board": "CB2S",
-      "pins": {
-        "7": "Button;1",
-        "8": "Relay;1"
-      },
-      "urls": [
-        "https://www.elektroda.pl/rtvforum/viewtopic.php?t=3874289&highlight="
-      ]
-    },
-  
-    {
-      "name": "KS 602 Touch Switch US",
-      "chip": "BK7231N",
-      "pins": {
-        "17": "Relay;1",
-        "26": "Button;1"
-      }
-    },
-  
-    {
-      "name": "QiaChip Smart Switch",
-      "chip": "BK7231T",
-      "board": "WB2S",
-      "pins": {
-        "7": "Button;1",
-        "6": "Relay_n;1",
-        "10": "LED;1"
-      }
-    },
-  
-    {
-      "name": "Prime SmartOutlet Outdoor 2x CostcovCCWFIO232PK",
-      "chip": "BK7231T",
-      "pins": {
-        "6": "Relay;1",
-        "7": "Relay;2",
-        "10": "LED;1",
-        "26": "LED;2",
-        "24": "Button;1"
-      },
-      "urls": [
-        "https://www.elektroda.pl/rtvforum/viewtopic.php?p=19906670#19906670",
-        "https://obrazki.elektroda.pl/6606464600_1642467157.jpg"
-      ]
-    },
-  
-    {
-      "name": "Tuya Smart PFW02-G",
-      "chip": "BK7231T",
-      "pins": {
-        "24": "Relay_n;1",
-        "26": "Button;1",
-        "7": "LED;1"
-      },
-      "urls": [
-        "https://www.tokmanni.fi/alypistorasia-home-connect-ip20-6419860720456"
-      ]
-    },
-  
-    {
-      "name": "Avatar ASL04 5v LED strip",
-      "chip": "BK7231T",
-      "pins": {
-        "24": "PWM;1",
-        "8": "PWM;2",
-        "6": "PWM;3",
-        "7": "Button;1",
-        "9": "Button;2",
-        "14": "Button;3"
-      }
-    },
-  
-    {
-      "name": "Tuya Smart Wifi Switch 4 Gang",
-      "chip": "BK7231N",
-      "board": "CB3S",
-      "pins": {
-        "24": "Button;1",
-        "20": "Button;2",
-        "7": "Button;3",
-        "14": "Button;4",
-        "6": "Relay;1",
-        "8": "Relay;2",
-        "9": "Relay;3",
-        "26": "Relay;4",
-        "22": "WifiLED_n;1"
-      }
-    },
-  
-    {
-      "name": "LSC Smart Connect Plug",
-      "chip": "BK7231N",
-      "board": "CB2S",
-      "pins": {
-        "6": "LED;1",
-        "7": "Button;1",
-        "26": "Relay;1"
-      }
-    },
-  
-    {
-      "name": "DS-102 1 Gang Switch",
-      "chip": "BK7231T",
-      "board": "WB3S",
-      "pins": {
-        "1": "WifiLED;1",
-        "6": "Relay;1",
-        "10": "Button;1",
-        "26": "LED;1"
-      }
-    },
-  
-    {
-      "name": "Gosund Smart Switch SW5-A-V2.1",
-      "chip": "BK7231T",
-      "pins": {
-        "7": "WifiLED;1",
-        "14": "Relay;1",
-        "8": "Button;1",
-        "16": "LED_n;1"
-      },
-      "urls": [
-        "https://www.elektroda.com/rtvforum/viewtopic.php?p=20008969#20008969"
-      ]
-    },
-  
-    {
-      "name": "DS-102 2 Gang Switch",
-      "chip": "BK7231T",
-      "board": "WB3S",
-      "pins": {
-        "1": "WifiLED;1",
-        "6": "Relay;1",
-        "10": "Button;1",
-        "26": "LED;1",
-        "8": "Button;2",
-        "9": "Relay;2",
-        "11": "LED;2"
-      }
-    },
-  
-    {
-      "name": "DS-102 3 Gang Switch",
-      "chip": "BK7231T",
-      "board": "WB3S",
-      "pins": {
-        "1": "WifiLED;1",
-        "6": "Relay;1",
-        "24": "Button;1",
-        "14": "LED;1",
-        "9": "Relay;2",
-        "10": "Button;2",
-        "26": "LED;2",
-        "7": "Relay;3",
-        "8": "Button;3",
-        "11": "LED;3"
-      }
-    },
-  
-    {
-      "name": "Aliexpress socket 13A",
-      "chip": "BK7231N",
-      "board": "CB2S",
-      "pins": {
-        "6": "LED;0",
-        "7": "LED;1",
-        "8": "Button;0",
-        "24": "Relay_n;0",
-        "25": "Relay_n;1"
-      },
-      "urls": [
-        "https://obrazki.elektroda.pl/8563462300_1652196315.jpg",
-        "https://obrazki.elektroda.pl/8998188300_1652196330.jpg",
-        "https://obrazki.elektroda.pl/2281136200_1652196339.jpg",
-        "https://obrazki.elektroda.pl/1568452900_1652196348.jpg",
-        "https://obrazki.elektroda.pl/4600787700_1652196323.jpg"
-      ]
-    },
-  
-    {
-      "name": "Deta Smart Double Power Point 6922HA Series 2",
-      "chip": "BK7231T",
-      "pins": {
-        "6": "Relay;1",
-        "9": "WifiLED_n;1",
-        "14": "Button;1",
-        "24": "Button;2",
-        "26": "Relay;2"
-      },
-      "urls": ["https://obrazki.elektroda.pl/2789424600_1656890909.jpg"]
+  {
+    "name": ""
+  },
+
+  {
+    "name": "WiFi DIY Switch ZN268131",
+    "chip": "BK7231T",
+    "board": "WB2S",
+    "pins": {
+      "6": "Relay;1",
+      "7": "WifiLED_n;1",
+      "10": "Button;1",
+      "26": "TglChanOnTgl;1"
     }
-  ]
-  
+  },
+
+  {
+    "name": "Magic Home LED RGB IR Strip",
+    "chip": "BL602",
+    "pins": {
+      "4": "PWM;0",
+      "3": "PWM;1",
+      "21": "PWM;2"
+    },
+    "urls": ["https://www.elektroda.pl/rtvforum/topic3881416.html"]
+  },
+
+  {
+    "name": "Tuya SmartSwitch SW01 16A",
+    "chip": "BK7231T",
+    "pins": {
+      "7": "Relay;1",
+      "26": "Button;1"
+    },
+    "urls": ["https://www.elektroda.pl/rtvforum/topic3804553.html"]
+  },
+
+  {
+    "name": "Tuya SmartLife 4CH 10A",
+    "chip": "BK7231T",
+    "pins": {
+      "7": "Button;1",
+      "8": "Button;2",
+      "9": "Button;3",
+      "1": "Button;4",
+      "14": "Relay;1",
+      "6": "Relay;2",
+      "24": "Relay;3",
+      "26": "Relay;4"
+    },
+    "urls": ["https://www.elektroda.pl/rtvforum/topic3822484.html"]
+  },
+
+  {
+    "name": "uya E27 LED RGBCW 5PWMs",
+    "chip": "BK7231N",
+    "pins": {
+      "26": "PWM;1",
+      "8": "PWM;2",
+      "7": "PWM;3",
+      "9": "PWM;4",
+      "6": "PWM;5"
+    },
+    "urls": [
+      "https://www.elektroda.pl/rtvforum/viewtopic.php?t=3880540&highlight="
+    ]
+  },
+
+  {
+    "name": "IntelligentLife NF101A",
+    "chip": "BK7231T",
+    "pins": {
+      "24": "Relay;1",
+      "6": "Button;1"
+    },
+    "urls": [
+      "https://www.elektroda.pl/rtvforum/viewtopic.php?p=19743751#19743751"
+    ]
+  },
+
+  {
+    "name": "Tuya LED Dimmer Single Channel PWM",
+    "chip": "BK7231T",
+    "board": "WB3S",
+    "pins": {
+      "8": "PWM;1",
+      "1": "Button;1"
+    },
+    "urls": ["https://www.elektroda.pl/rtvforum/topic3798114.html"]
+  },
+
+  {
+    "name": "Calex RGBWW LED Dimmer Five Channel PWM",
+    "chip": "BK7231S",
+    "pins": {
+      "7": "PWM;1",
+      "8": "PWM;2",
+      "6": "PWM;3",
+      "24": "PWM;4",
+      "26": "PWM;5"
+    }
+  },
+
+  {
+    "name": "Calex UK power strip 900018.1 v1.0 UK",
+    "chip": "BK7231T",
+    "pins": {
+      "6": "Relay;5",
+      "7": "Relay;2",
+      "8": "Relay;3",
+      "9": "Relay;1",
+      "26": "Relay;4",
+      "14": "Button;1",
+      "10": "LED;1",
+      "24": "LED;2"
+    }
+  },
+
+  {
+    "name": "Arlec CCT LED Downlight ALD029CHA",
+    "chip": "BK7231T",
+    "pins": {
+      "6": "PWM;4",
+      "24": "PWM;5"
+    },
+    "urls": [
+      "https://www.bunnings.com.au/arlec-grid-connect-smart-9w-cct-led-downlight_p0168694"
+    ]
+  },
+
+  {
+    "name": "Arlec RGB+CCT LED Downlight ALD092RHA",
+    "chip": "BK7231T",
+    "pins": {
+      "8": "PWM;1",
+      "7": "PWM;2",
+      "9": "PWM;3",
+      "6": "PWM;4",
+      "24": "PWM;5"
+    },
+    "urls": [
+      "https://www.bunnings.com.au/arlec-grid-connect-smart-9w-rgb-cct-led-downlight_p0168695"
+    ]
+  },
+
+  {
+    "name": "CasaLife CCT LED Downlight SMART-AL2017-TGTS",
+    "chip": "BK7231T",
+    "pins": {
+      "7": "PWM;0",
+      "8": "PWM;1"
+    },
+    "urls": [
+      "https://www.elektroda.com/rtvforum/viewtopic.php?p=20123466#20123466"
+    ],
+    "flag": "LED_RAWCHANNELSMODE"
+  },
+
+  {
+    "name": "Nedis WIFIPO120FWT SmartPlug 16A",
+    "chip": "BK7231T",
+    "pins": {
+      "6": "LED;1",
+      "10": "Button;1",
+      "26": "Relay_n;1"
+    },
+    "urls": ["https://www.elektroda.pl/rtvforum/topic3804553.html"]
+  },
+
+  {
+    "name": "Nedis WIFIP130FWT SmartPlug 10A",
+    "chip": "BK7231T",
+    "pins": {
+      "6": "LED;1",
+      "10": "Button;1",
+      "26": "Relay;1"
+    },
+    "urls": ["https://www.elektroda.pl/rtvforum/topic3804553.html"]
+  },
+
+  {
+    "name": "Emax Home EDU8774 SmartPlug 16A",
+    "chip": "BK7231T",
+    "pins": {
+      "10": "Button;1",
+      "24": "LED_n;1",
+      "26": "Relay;1"
+    },
+    "urls": ["https://www.elektroda.pl/rtvforum/topic3804553.html"]
+  },
+
+  {
+    "name": "LSPA9 power metering plug BL0942 version",
+    "chip": "BK7231N",
+    "board": "CB2S",
+    "pins": {
+      "6": "Button;1",
+      "8": "WifiLED_n;1",
+      "26": "Relay;1"
+    },
+    "urls": [
+      "https://www.elektroda.pl/rtvforum/viewtopic.php?t=3887748&highlight="
+    ],
+    "command": "backlog startDriver BL0942; VREF 15987.125000; PREF -683.023987; IREF 272302.687500"
+  },
+
+  {
+    "name": "Qiachip Smart Switch",
+    "chip": "BK7231N",
+    "board": "CB2S",
+    "pins": {
+      "7": "Button;1",
+      "8": "Relay;1"
+    },
+    "urls": [
+      "https://www.elektroda.pl/rtvforum/viewtopic.php?t=3874289&highlight="
+    ]
+  },
+
+  {
+    "name": "KS 602 Touch Switch US",
+    "chip": "BK7231N",
+    "pins": {
+      "17": "Relay;1",
+      "26": "Button;1"
+    },
+    "flag": "BTN_INSTANTTOUCH"
+  },
+
+  {
+    "name": "QiaChip Smart Switch",
+    "chip": "BK7231T",
+    "board": "WB2S",
+    "pins": {
+      "7": "Button;1",
+      "6": "Relay_n;1",
+      "10": "LED;1"
+    }
+  },
+
+  {
+    "name": "Prime SmartOutlet Outdoor 2x CostcovCCWFIO232PK",
+    "chip": "BK7231T",
+    "pins": {
+      "6": "Relay;1",
+      "7": "Relay;2",
+      "10": "LED;1",
+      "26": "LED;2",
+      "24": "Button;1"
+    },
+    "urls": [
+      "https://www.elektroda.pl/rtvforum/viewtopic.php?p=19906670#19906670",
+      "https://obrazki.elektroda.pl/6606464600_1642467157.jpg"
+    ]
+  },
+
+  {
+    "name": "Tuya Smart PFW02-G",
+    "chip": "BK7231T",
+    "pins": {
+      "24": "Relay_n;1",
+      "26": "Button;1",
+      "7": "LED;1"
+    },
+    "urls": [
+      "https://www.tokmanni.fi/alypistorasia-home-connect-ip20-6419860720456"
+    ]
+  },
+
+  {
+    "name": "Avatar ASL04 5v LED strip",
+    "chip": "BK7231T",
+    "pins": {
+      "24": "PWM;1",
+      "8": "PWM;2",
+      "6": "PWM;3",
+      "7": "Button;1",
+      "9": "Button;2",
+      "14": "Button;3"
+    }
+  },
+
+  {
+    "name": "Tuya Smart Wifi Switch 4 Gang",
+    "chip": "BK7231N",
+    "board": "CB3S",
+    "pins": {
+      "24": "Button;1",
+      "20": "Button;2",
+      "7": "Button;3",
+      "14": "Button;4",
+      "6": "Relay;1",
+      "8": "Relay;2",
+      "9": "Relay;3",
+      "26": "Relay;4",
+      "22": "WifiLED_n;1"
+    }
+  },
+
+  {
+    "name": "LSC Smart Connect Plug",
+    "chip": "BK7231N",
+    "board": "CB2S",
+    "pins": {
+      "6": "LED;1",
+      "7": "Button;1",
+      "26": "Relay;1"
+    }
+  },
+
+  {
+    "name": "DS-102 1 Gang Switch",
+    "chip": "BK7231T",
+    "board": "WB3S",
+    "pins": {
+      "1": "WifiLED;1",
+      "6": "Relay;1",
+      "10": "Button;1",
+      "26": "LED;1"
+    }
+  },
+
+  {
+    "name": "Gosund Smart Switch SW5-A-V2.1",
+    "chip": "BK7231T",
+    "pins": {
+      "7": "WifiLED;1",
+      "14": "Relay;1",
+      "8": "Button;1",
+      "16": "LED_n;1"
+    },
+    "urls": [
+      "https://www.elektroda.com/rtvforum/viewtopic.php?p=20008969#20008969"
+    ]
+  },
+
+  {
+    "name": "DS-102 2 Gang Switch",
+    "chip": "BK7231T",
+    "board": "WB3S",
+    "pins": {
+      "1": "WifiLED;1",
+      "6": "Relay;1",
+      "10": "Button;1",
+      "26": "LED;1",
+      "8": "Button;2",
+      "9": "Relay;2",
+      "11": "LED;2"
+    }
+  },
+
+  {
+    "name": "DS-102 3 Gang Switch",
+    "chip": "BK7231T",
+    "board": "WB3S",
+    "pins": {
+      "1": "WifiLED;1",
+      "6": "Relay;1",
+      "24": "Button;1",
+      "14": "LED;1",
+      "9": "Relay;2",
+      "10": "Button;2",
+      "26": "LED;2",
+      "7": "Relay;3",
+      "8": "Button;3",
+      "11": "LED;3"
+    }
+  },
+
+  {
+    "name": "AliExpress socket 13A",
+    "chip": "BK7231N",
+    "board": "CB2S",
+    "pins": {
+      "6": "LED;0",
+      "7": "LED;1",
+      "8": "Button;0;1",
+      "24": "Relay_n;0",
+      "25": "Relay_n;1"
+    },
+    "urls": [
+      "https://obrazki.elektroda.pl/8563462300_1652196315.jpg",
+      "https://obrazki.elektroda.pl/8998188300_1652196330.jpg",
+      "https://obrazki.elektroda.pl/2281136200_1652196339.jpg",
+      "https://obrazki.elektroda.pl/1568452900_1652196348.jpg",
+      "https://obrazki.elektroda.pl/4600787700_1652196323.jpg"
+    ]
+  },
+
+  {
+    "name": "Deta Smart Double Power Point 6922HA Series 2",
+    "chip": "BK7231T",
+    "pins": {
+      "6": "Relay;1",
+      "9": "WifiLED_n;1",
+      "14": "Button;1",
+      "24": "Button;2",
+      "26": "Relay;2"
+    },
+    "urls": ["https://obrazki.elektroda.pl/2789424600_1656890909.jpg"]
+  }
+]
