@@ -15,35 +15,50 @@
       <div class="right">
         <table width="100%">
           <tr>
-            <td style="vertical-align:top; padding-right:5px; width: 250px;">
-              <p>Devices:</p>
+            <td style="vertical-align:top; padding-right:5px; width: 250px;"  v-if="supportsClientDeviceDB">
+              <h4>Devices:</h4>
+
+              Chipset:
+              <select v-model="selectedChipset">
+                <option v-for="(chip, index) in chipsets" :value="index" :key="index">{{chip}}</option>
+              </select>
+              {{ (filteredDevices || []).length - 1 }} devices
+              <br/><br/>
 
               <select v-model="selectedDevIndex">
-                <option v-for="(dev, index) in devices" :value="index" :key="index">{{dev.name}}</option>
+                <option v-for="(dev, index) in filteredDevices" :value="index" :key="index">{{dev.name}}</option>
               </select>
-
-              <div v-if="selectedDevIndex>0">
-                {{ devices[selectedDevIndex].chip}} {{ devices[selectedDevIndex].board }}
-
-                <div v-if="devices[selectedDevIndex].urls">
-                  More Info: 
-                  <span v-for="(url,index) in devices[selectedDevIndex].urls" :key="url">
-                    <a v-bind:href="url" target="_blank">{{index+1}}</a>
-                  </span>
-                </div>
+              
+              <div v-if="selectedDevIndex > 0">
+                <br/>
+                Chipset: {{ devices[selectedDevIndex].chip}} {{ devices[selectedDevIndex].board }}
 
                 <ul>
                   <li v-for="(pin,key) in devices[selectedDevIndex].pins" :key="key">
-                  Pin {{key}} as {{ pin.split(';')[0] }} on channel {{ pin.split(';')[1] }}
+                    <span v-if="pin.split(';').length === 2">
+                      Pin {{key}}: {{ pin.split(';')[0] }} on channel {{ pin.split(';')[1] }} {{ pin.split(';')[2] }}
+                    </span>
+                    <span v-else>
+                      Pin {{key}}: {{ pin.split(';')[0] }} on channels {{ pin.split(';')[1] }}, {{ pin.split(';')[2] }}
+                    </span>
                   </li>
                 </ul>
+
+                <div v-if="devices[selectedDevIndex].urls">
+                  Links: 
+                  <span v-for="(url,index) in devices[selectedDevIndex].urls" :key="url">
+                    <span v-if="index > 0">, </span><a v-bind:href="url" target="_blank">{{index+1}}</a>
+                  </span>
+                  <br/><br/>
+                </div>
+
                 <button @click="useDevice">Use device</button>
               </div>
               
             </td>
             <td style="vertical-align:top; padding-left:5px;">
 
-              <p>Pin Settings:</p>
+              <h4>Pin Settings:</h4>
               <div v-for="(role, index) in pins.roles" :key="index">
                 <span>{{index}}</span>
                 <select v-model="pins.roles[index]">
@@ -73,14 +88,21 @@
         mqtttopic:'unknown',
         webapp:'unknown',
         chipset:'unknown',
+        supportsClientDeviceDB: false,
 
         pins:{ rolenames:[], roles:[], channels:[] },
+        deviceFlag:"",
+        deviceCommand: "",
 
         error:'',
         interval: null,
 
         devices: null,
         selectedDevIndex: 0,
+        selectedChipset: 0,
+        chipsets:[
+          "All","BK7231N","BK7231S","BK7231T","BL602"
+        ],
         pinRoleNames: [
           " ",
           "Relay",
@@ -108,9 +130,18 @@
         ]
       }
     },
+    computed:{
+      //Devices filtered by chipset
+      filteredDevices(){
+        if (this.selectedChipset===0) { return this.devices; }
+        
+        let selectedChipsetName = this.chipsets[this.selectedChipset];
+
+        //Empty value still appears at the beginning
+        return this.devices.filter(item => item.name === "" || item.chip === selectedChipsetName);
+      }
+    },
     methods:{
-      onDeviceSelected(event){
-      },
       getinfo(){
         let url = window.device+'/api/info';
         fetch(url)
@@ -125,6 +156,7 @@
                 this.mqtttopic  = res.mqtttopic; 
                 this.webapp     = res.webapp;
                 this.chipset    = res.chipset;
+                this.supportsClientDeviceDB = res.supportsClientDeviceDB;
             })
             .catch(err => {
               this.error = err.toString();
@@ -154,8 +186,14 @@
         }
         let tosave = {
           channels: this.pins.channels,
-          roles: this.pins.roles,
+          roles: this.pins.roles
         }
+
+        if (this.supportsClientDeviceDB) { //Send more data pieces conditionally to prevent errors
+          tosave.deviceFlag = this.deviceFlag;
+          tosave.deviceCommand = this.deviceCommand;
+        }
+
         let url = window.device+'/api/pins';
         fetch(url, {
                 method: 'POST',
@@ -197,6 +235,8 @@
 
         this.pins.roles = newPinsRoles;
         this.pins.channels = newPinsChannels;
+        this.deviceFlag = this.devices[this.selectedDevIndex].flag || "";
+        this.deviceCommand = this.devices[this.selectedDevIndex].command || "";
       },
       getDevices(){
         fetch("devices.json")
