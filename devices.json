@@ -4,7 +4,9 @@
   },
 
   {
-    "name": "WiFi DIY Switch ZN268131",
+    "vendor": "Generic",
+    "name": "WiFi DIY Switch",
+    "model": "ZN268131",
     "chip": "BK7231T",
     "board": "WB2S",
     "pins": {
@@ -16,7 +18,8 @@
   },
 
   {
-    "name": "Magic Home LED RGB IR Strip",
+    "vendor": "Magic Home",
+    "name": "LED RGB IR Strip",
     "chip": "BL602",
     "pins": {
       "4": "PWM;0",
@@ -27,7 +30,8 @@
   },
 
   {
-    "name": "Tuya SmartSwitch SW01 16A",
+    "vendor": "Tuya",
+    "name": "SmartSwitch SW01 16A",
     "chip": "BK7231T",
     "pins": {
       "7": "Relay;1",
@@ -37,7 +41,8 @@
   },
 
   {
-    "name": "Tuya SmartLife 4CH 10A",
+    "vendor": "Tuya",
+    "name": "SmartLife 4CH 10A",
     "chip": "BK7231T",
     "pins": {
       "7": "Button;1",
@@ -53,7 +58,8 @@
   },
 
   {
-    "name": "uya E27 LED RGBCW 5PWMs",
+    "vendor": "Tuya",
+    "name": "E27 LED RGBCW 5PWMs",
     "chip": "BK7231N",
     "pins": {
       "26": "PWM;1",
@@ -68,7 +74,8 @@
   },
 
   {
-    "name": "IntelligentLife NF101A",
+    "vendor": "Intelligent Life",
+    "name": "NF101A",
     "chip": "BK7231T",
     "pins": {
       "24": "Relay;1",
@@ -80,7 +87,8 @@
   },
 
   {
-    "name": "Tuya LED Dimmer Single Channel PWM",
+    "vendor": "Tuya",
+    "name": "LED Dimmer Single Channel PWM",
     "chip": "BK7231T",
     "board": "WB3S",
     "pins": {
@@ -91,7 +99,8 @@
   },
 
   {
-    "name": "Calex RGBWW LED Dimmer Five Channel PWM",
+    "vendor": "Calex",
+    "name": "RGBWW LED Dimmer Five Channel PWM",
     "chip": "BK7231S",
     "pins": {
       "7": "PWM;1",
@@ -103,7 +112,8 @@
   },
 
   {
-    "name": "Calex UK power strip 900018.1 v1.0 UK",
+    "vendor": "Calex",
+    "name": "UK power strip 900018.1 v1.0 UK",
     "chip": "BK7231T",
     "pins": {
       "6": "Relay;5",
@@ -118,7 +128,9 @@
   },
 
   {
-    "name": "Arlec CCT LED Downlight ALD029CHA",
+    "vendor": "Arlec",
+    "name": "CCT LED Downlight",
+    "model": "ALD029CHA",
     "chip": "BK7231T",
     "pins": {
       "6": "PWM;4",
@@ -130,7 +142,9 @@
   },
 
   {
-    "name": "Arlec RGB+CCT LED Downlight ALD092RHA",
+    "vendor": "Arlec",
+    "name": "RGB+CCT LED Downlight",
+    "model": "ALD092RHA",
     "chip": "BK7231T",
     "pins": {
       "8": "PWM;1",
@@ -145,7 +159,9 @@
   },
 
   {
-    "name": "CasaLife CCT LED Downlight SMART-AL2017-TGTS",
+    "vendor": "CasaLife",
+    "name": "CCT LED Downlight",
+    "model": "SMART-AL2017-TGTS",
     "chip": "BK7231T",
     "pins": {
       "7": "PWM;0",
@@ -158,7 +174,9 @@
   },
 
   {
-    "name": "Nedis WIFIPO120FWT SmartPlug 16A",
+    "vendor": "Nedis",
+    "name": "SmartPlug 16A",
+    "model": "WIFIPO120FWT",
     "chip": "BK7231T",
     "pins": {
       "6": "LED;1",
@@ -169,7 +187,9 @@
   },
 
   {
-    "name": "Nedis WIFIP130FWT SmartPlug 10A",
+    "vendor": "Nedis",
+    "name": "SmartPlug 10A",
+    "model": "WIFIP130FWT",
     "chip": "BK7231T",
     "pins": {
       "6": "LED;1",
@@ -180,7 +200,9 @@
   },
 
   {
-    "name": "Emax Home EDU8774 SmartPlug 16A",
+    "vendor": "Emax",
+    "name": "Home SmartPlug 16A",
+    "model": "EDU8774",
     "chip": "BK7231T",
     "pins": {
       "10": "Button;1",
@@ -191,7 +213,9 @@
   },
 
   {
-    "name": "LSPA9 power metering plug BL0942 version",
+    "vendor": "ELIVCO",
+    "name": "Power metering plug BL0942 version",
+    "model": "LSPA9",
     "chip": "BK7231N",
     "board": "CB2S",
     "pins": {
@@ -206,7 +230,8 @@
   },
 
   {
-    "name": "Qiachip Smart Switch",
+    "vendor": "QiaChip",
+    "name": "Smart Switch",
     "chip": "BK7231N",
     "board": "CB2S",
     "pins": {
@@ -219,7 +244,9 @@
   },
 
   {
-    "name": "KS 602 Touch Switch US",
+    "vendor": "Hidin Tech",
+    "name": "Touch Switch US",
+    "model": "KS602",
     "chip": "BK7231N",
     "pins": {
       "17": "Relay;1",
@@ -229,7 +256,8 @@
   },
 
   {
-    "name": "QiaChip Smart Switch",
+    "vendor": "QiaChip",
+    "name": "Smart Switch",
     "chip": "BK7231T",
     "board": "WB2S",
     "pins": {
@@ -240,7 +268,9 @@
   },
 
   {
-    "name": "Prime SmartOutlet Outdoor 2x CostcovCCWFIO232PK",
+    "vendor": "Prime",
+    "name": "SmartOutlet Outdoor 2x Costco",
+    "model": "CCWFIO232PK",
     "chip": "BK7231T",
     "pins": {
       "6": "Relay;1",
@@ -256,7 +286,9 @@
   },
 
   {
-    "name": "Tuya Smart PFW02-G",
+    "vendor": "Tuya",
+    "name": "Smart",
+    "model": "PFW02-G",
     "chip": "BK7231T",
     "pins": {
       "24": "Relay_n;1",
@@ -269,7 +301,9 @@
   },
 
   {
-    "name": "Avatar ASL04 5v LED strip",
+    "vendor": "Avatar",
+    "name": "5v LED strip",
+    "model": "ASL04",
     "chip": "BK7231T",
     "pins": {
       "24": "PWM;1",
@@ -282,7 +316,8 @@
   },
 
   {
-    "name": "Tuya Smart Wifi Switch 4 Gang",
+    "vendor": "Tuya",
+    "name": "Smart Wifi Switch 4 Gang",
     "chip": "BK7231N",
     "board": "CB3S",
     "pins": {
@@ -299,7 +334,8 @@
   },
 
   {
-    "name": "LSC Smart Connect Plug",
+    "vendor": "LSC",
+    "name": "Smart Connect Plug",
     "chip": "BK7231N",
     "board": "CB2S",
     "pins": {
@@ -310,7 +346,8 @@
   },
 
   {
-    "name": "DS-102 1 Gang Switch",
+    "vendor": "DS-102",
+    "name": "1 Gang Switch",
     "chip": "BK7231T",
     "board": "WB3S",
     "pins": {
@@ -322,7 +359,9 @@
   },
 
   {
-    "name": "Gosund Smart Switch SW5-A-V2.1",
+    "vendor": "Gosund",
+    "name": "Smart Switch",
+    "model": "SW5-A-V2.1",
     "chip": "BK7231T",
     "pins": {
       "7": "WifiLED;1",
@@ -336,7 +375,8 @@
   },
 
   {
-    "name": "DS-102 2 Gang Switch",
+    "vendor": "DS-102",
+    "name": "2 Gang Switch",
     "chip": "BK7231T",
     "board": "WB3S",
     "pins": {
@@ -351,7 +391,8 @@
   },
 
   {
-    "name": "DS-102 3 Gang Switch",
+    "vendor": "DS-102",
+    "name": "3 Gang Switch",
     "chip": "BK7231T",
     "board": "WB3S",
     "pins": {
@@ -369,7 +410,8 @@
   },
 
   {
-    "name": "AliExpress socket 13A",
+    "vendor": "AliExpress",
+    "name": "Socket 13A",
     "chip": "BK7231N",
     "board": "CB2S",
     "pins": {
@@ -389,7 +431,9 @@
   },
 
   {
-    "name": "Deta Smart Double Power Point 6922HA Series 2",
+    "vendor": "Deta",
+    "name": "Smart Double Power Point Series 2",
+    "model": "6922HA",
     "chip": "BK7231T",
     "pins": {
       "6": "Relay;1",

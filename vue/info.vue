@@ -26,12 +26,14 @@
               <br/><br/>
 
               <select v-model="selectedDevIndex">
-                <option v-for="(dev, index) in filteredDevices" :value="index" :key="index">{{dev.name}}</option>
+                <option v-for="(dev, index) in filteredDevices" :value="index" :key="index">{{ getDeviceDisplayName(dev) }}</option>
               </select>
               
               <div v-if="selectedDevIndex > 0">
                 <br/>
                 Chipset: {{ devices[selectedDevIndex].chip}} {{ devices[selectedDevIndex].board }}
+                <br/>
+                Model: {{ devices[selectedDevIndex].model }}
 
                 <ul>
                   <li v-for="(pin,key) in devices[selectedDevIndex].pins" :key="key">
@@ -244,8 +246,8 @@
           .then(response => response.json())
           .then(data => {
             this.devices = data.sort((a,b) => {
-              const nameA = a.name.toLowerCase();
-              const nameB = b.name.toLowerCase();
+              const nameA = this.getDeviceDisplayName(a).toLowerCase();
+              const nameB = this.getDeviceDisplayName(b).toLowerCase();
               return nameA < nameB ? -1 : (nameA > nameB ? 1: 0);
             });
           })
@@ -253,6 +255,9 @@
               this.error = err.toString();
               console.error(err)
             });
+      },
+      getDeviceDisplayName(dev){
+        return dev.vendor + " " + dev.name;
       }
     },
     mounted (){

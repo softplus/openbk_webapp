@@ -20,7 +20,9 @@ Features include OTA, device filesystem management, device configuration, loggin
 
 The webApp now supports client device database. Each device entry consists of the following fields:
 
+* vendor: (required) Vendor
 * name: (required) Device name
+* model: (optional) Model number
 * chip: (required) Chipset
 * board: (optional) Board
 * pins: (required) Pin configuration. The pin value can be
