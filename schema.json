@@ -1,0 +1,90 @@
+{
+  "$id": "https://github.com/openshwprojects/obj_webapp/schema.json",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "DeviceDatabase",
+  "description": "OpenBK7231T Device database",
+  "type": "object",
+  "required": ["version", "devices"],
+  "properties": {
+    "version": {
+      "description": "Database version",
+      "type": "number"
+    },
+    "devices": {
+      "description": "Devices",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/device"
+      }
+    }
+  },
+  "$defs": {
+    "device": {
+      "description": "Device definition",
+      "type": "object",
+      "required": ["vendor", "name", "chip", "pins", "wiki", "image"],
+      "properties": {
+        "vendor": {
+          "description": "Vendor",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name",
+          "type": "string"
+        },
+        "model": {
+          "description": "Model",
+          "type": "string"
+        },
+        "chip": {
+          "description": "Chip",
+          "type": "string"
+        },
+        "board": {
+          "description": "Board",
+          "type": "string"
+        },
+        "pins": {
+          "description": "Pin definitions",
+          "type": "object",
+          "minProperties": 1,
+          "patternProperties": {
+            "^[0-9]*$": {
+              "type": "string"
+            }
+          }
+        },
+        "wiki": {
+          "description": "Wiki url",
+          "type": "string"
+        },
+        "command": {
+          "description": "Additional custom command",
+          "type": "string"
+        },
+        "flag": {
+          "description": "Additional custom flag",
+          "type": "string"
+        },
+        "image": {
+          "description": "Main image url",
+          "type": "string"
+        },
+        "keywords": {
+          "description": "Search keywords",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "gallery": {
+          "description": "Gallery image urls",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
