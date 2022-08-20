@@ -22,7 +22,7 @@
     "device": {
       "description": "Device definition",
       "type": "object",
-      "required": ["vendor", "name", "chip", "pins", "wiki", "image"],
+      "required": ["vendor", "name", "chip", "pins", "image", "wiki"],
       "properties": {
         "vendor": {
           "description": "Vendor",
@@ -54,9 +54,20 @@
             }
           }
         },
+        "image": {
+          "description": "Main image url",
+          "type": "string"
+        },
         "wiki": {
           "description": "Wiki url",
           "type": "string"
+        },
+        "urls": {
+          "description": "Additional urls",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "command": {
           "description": "Additional custom command",
@@ -66,12 +77,8 @@
           "description": "Additional custom flag",
           "type": "string"
         },
-        "image": {
-          "description": "Main image url",
-          "type": "string"
-        },
         "keywords": {
-          "description": "Search keywords",
+          "description": "Keywords",
           "type": "array",
           "items": {
             "type": "string"
