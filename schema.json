@@ -1,5 +1,5 @@
 {
-  "$id": "https://github.com/openshwprojects/obj_webapp/schema.json",
+  "$id": "https://github.com/OpenBekenIOT/webapp/schema.json",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "DeviceDatabase",
   "description": "OpenBK7231T Device database",
@@ -60,6 +60,10 @@
         },
         "wiki": {
           "description": "Wiki url",
+          "type": "string"
+        },
+        "product": {
+          "description": "Product url",
           "type": "string"
         },
         "urls": {

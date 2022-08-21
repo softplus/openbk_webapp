@@ -14,8 +14,8 @@
         "10": "Button;1",
         "26": "TglChanOnTgl;1"
       },
-      "image": "",
-      "wiki": ""
+      "image": "https://obrazki.elektroda.pl/5120493600_1650616045.jpg",
+      "wiki": "https://www.elektroda.com/rtvforum/topic3895572.html#20033093"
     },
     {
       "vendor": "Magic Home",
@@ -39,7 +39,7 @@
         "26": "Button;1"
       },
       "image": "https://obrazki.elektroda.pl/4822560000_1620736449.jpg",
-      "wiki": "https://www.elektroda.pl/rtvforum/topic3804553.html"
+      "wiki": "https://www.elektroda.com/rtvforum/topic3804553.html"
     },
 
     {
@@ -72,7 +72,7 @@
         "6": "PWM;5"
       },
       "image": "https://obrazki.elektroda.pl/1632162600_1647560633.jpg",
-      "wiki": "https://www.elektroda.pl/rtvforum/viewtopic.php?t=3880540&highlight="
+      "wiki": "https://www.elektroda.com/rtvforum/topic3880540.html"
     },
 
     {
@@ -84,7 +84,7 @@
         "6": "Button;1"
       },
       "image": "https://obrazki.elektroda.pl/8055479400_1637246842.jpg",
-      "wiki": "https://www.elektroda.pl/rtvforum/viewtopic.php?p=19743751#19743751"
+      "wiki": "https://www.elektroda.pl/rtvforum/topic3851807.html#19743751"
     },
 
     {
@@ -97,7 +97,7 @@
         "1": "Button;1"
       },
       "image": "https://obrazki.elektroda.pl/6506291700_1618394268.jpg",
-      "wiki": "https://www.elektroda.pl/rtvforum/topic3798114.html"
+      "wiki": "https://www.elektroda.com/rtvforum/topic3798114.html"
     },
 
     {
@@ -112,7 +112,7 @@
         "26": "PWM;5"
       },
       "image": "",
-      "wiki": ""
+      "wiki": "https://www.elektroda.com/rtvforum/topic3850712.html#19824097"
     },
 
     {
@@ -129,8 +129,8 @@
         "10": "LED;1",
         "24": "LED;2"
       },
-      "image": "",
-      "wiki": ""
+      "image": "https://obrazki.elektroda.pl/7584166600_1644156432.jpg",
+      "wiki": "https://www.elektroda.com/rtvforum/topic3866123-60.html#19867995"
     },
 
     {
@@ -144,9 +144,7 @@
       },
       "image": "",
       "wiki": "",
-      "urls": [
-        "https://www.bunnings.com.au/arlec-grid-connect-smart-9w-cct-led-downlight_p0168694"
-      ]
+      "product": "https://www.bunnings.com.au/arlec-grid-connect-smart-9w-cct-led-downlight_p0168694"
     },
 
     {
@@ -163,9 +161,7 @@
       },
       "image": "",
       "wiki": "",
-      "urls": [
-        "https://www.bunnings.com.au/arlec-grid-connect-smart-9w-rgb-cct-led-downlight_p0168695"
-      ]
+      "product": "https://www.bunnings.com.au/arlec-grid-connect-smart-9w-rgb-cct-led-downlight_p0168695"
     },
 
     {
@@ -193,7 +189,7 @@
         "26": "Relay_n;1"
       },
       "image": "https://obrazki.elektroda.pl/4822560000_1620736449.jpg",
-      "wiki": "https://www.elektroda.pl/rtvforum/topic3804553.html"
+      "wiki": "https://www.elektroda.com/rtvforum/topic3804553.html"
     },
 
     {
@@ -207,7 +203,7 @@
         "26": "Relay;1"
       },
       "image": "https://obrazki.elektroda.pl/4822560000_1620736449.jpg",
-      "wiki": "https://www.elektroda.pl/rtvforum/topic3804553.html"
+      "wiki": "https://www.elektroda.com/rtvforum/topic3804553.html"
     },
 
     {
@@ -221,7 +217,7 @@
         "26": "Relay;1"
       },
       "image": "https://obrazki.elektroda.pl/4822560000_1620736449.jpg",
-      "wiki": "https://www.elektroda.pl/rtvforum/topic3804553.html"
+      "wiki": "https://www.elektroda.com/rtvforum/topic3804553.html"
     },
 
     {
@@ -236,7 +232,7 @@
         "26": "Relay;1"
       },
       "image": "https://obrazki.elektroda.pl/6510354700_1649939521.jpg",
-      "wiki": "https://www.elektroda.pl/rtvforum/viewtopic.php?t=3887748&highlight=",
+      "wiki": "https://www.elektroda.com/rtvforum/topic3887748.html",
       "command": "backlog startDriver BL0942; VREF 15987.125000; PREF -683.023987; IREF 272302.687500"
     },
 
@@ -250,7 +246,7 @@
         "8": "Relay;1"
       },
       "image": "https://obrazki.elektroda.pl/1094134100_1644544710.jpg",
-      "wiki": "https://www.elektroda.pl/rtvforum/viewtopic.php?t=3874289&highlight="
+      "wiki": "https://www.elektroda.com/rtvforum/viewtopic.php?t=3874289"
     },
 
     {
@@ -277,8 +273,8 @@
         "6": "Relay_n;1",
         "10": "LED;1"
       },
-      "image": "",
-      "wiki": ""
+      "image": "https://obrazki.elektroda.pl/1094134100_1644544710.jpg",
+      "wiki": "https://www.elektroda.com/rtvforum/viewtopic.php?t=3874289"
     },
 
     {
@@ -293,8 +289,8 @@
         "26": "LED;2",
         "24": "Button;1"
       },
-      "wiki": "https://www.elektroda.pl/rtvforum/viewtopic.php?p=19906670#19906670",
-      "image": "https://obrazki.elektroda.pl/6606464600_1642467157.jpg"
+      "image": "https://obrazki.elektroda.pl/6606464600_1642467157.jpg",
+      "wiki": "https://www.elektroda.com/rtvforum/viewtopic.php?p=19906670#19906670"
     },
 
     {
@@ -309,9 +305,7 @@
       },
       "image": "",
       "wiki": "",
-      "urls": [
-        "https://www.tokmanni.fi/alypistorasia-home-connect-ip20-6419860720456"
-      ]
+      "product": "https://www.tokmanni.fi/alypistorasia-home-connect-ip20-6419860720456"
     },
 
     {
@@ -447,11 +441,11 @@
         "25": "Relay_n;1"
       },
       "image": "https://obrazki.elektroda.pl/8563462300_1652196315.jpg",
-      "wiki": ""
+      "wiki": "https://www.elektroda.com/rtvforum/topic3892473.html#20014441"
     },
 
     {
-      "vendor": "Deta",
+      "vendor": "DETA",
       "name": "Smart Double Power Point Series 2",
       "model": "6922HA",
       "chip": "BK7231T",
