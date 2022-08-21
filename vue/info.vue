@@ -1,85 +1,59 @@
 <template>
-    <div class="container">
-      <div class="left">
-        <p>UpTime: {{uptime_s}}s</p>
-        <p>Build: {{build}}</p>
-        <p>IP Address: {{ip}}</p>
-        <p>MAC Address: {{mac}}</p>
-        <p>MQTT Server: {{mqtthost}}</p>
-        <p>MQTT Topic: {{mqtttopic}}</p>
-        <p>WEBAPP Url root: {{webapp}}</p>
-        <p>Chipset: {{chipset}}</p>
-        <p v-if="error">Error: {{error}}</p>
-      </div>
+  <div class="container">
+    <div class="item">
+      <h4>Current Device:</h4>
+      <p>UpTime: {{uptime_s}}s</p>
+      <p>Build: {{build}}</p>
+      <p>IP Address: {{ip}}</p>
+      <p>MAC Address: {{mac}}</p>
+      <p>MQTT Server: {{mqtthost}}</p>
+      <p>MQTT Topic: {{mqtttopic}}</p>
+      <p>WEBAPP Url root: {{webapp}}</p>
+      <p>Chipset: {{chipset}}</p>
+      <p v-if="error">Error: {{error}}</p>
+    </div>
 
-      <div class="right">
-        <table width="100%">
-          <tr>
-            <td style="vertical-align:top; padding-right:5px; width: 250px;"  v-if="supportsClientDeviceDB">
-              <h4>Devices:</h4>
+    <div class="item" v-if="supportsClientDeviceDB">
+      <h4>Devices:</h4>
+      Chipset:
+      <select v-model="selectedChipset">
+        <option v-for="chip in chipsets" :value="chip" :key="chip">{{chip}}</option>
+      </select>
+      {{ (filteredDevices || []).length - 1 }} devices
+      <br/><br/>
 
-              Chipset:
-              <select v-model="selectedChipset">
-                <option v-for="(chip, index) in chipsets" :value="index" :key="index">{{chip}}</option>
-              </select>
-              {{ (filteredDevices || []).length - 1 }} devices
-              <br/><br/>
+      <select v-model="selectedDevice" >
+        <option v-for="dev in filteredDevices" :value="dev" :key="dev">{{ getDeviceDisplayName(dev) }}</option>
+      </select>
 
-              <select v-model="selectedDevIndex">
-                <option v-for="(dev, index) in filteredDevices" :value="index" :key="index">{{ getDeviceDisplayName(dev) }}</option>
-              </select>
-              
-              <div v-if="selectedDevIndex > 0">
-                <br/>
-                Chipset: {{ devices[selectedDevIndex].chip}} {{ devices[selectedDevIndex].board }}
-                <br/>
-                Model: {{ devices[selectedDevIndex].model }}
-
-                <ul>
-                  <li v-for="(pin,key) in devices[selectedDevIndex].pins" :key="key">
-                    <span v-if="pin.split(';').length === 2">
-                      Pin {{key}}: {{ pin.split(';')[0] }} on channel {{ pin.split(';')[1] }} {{ pin.split(';')[2] }}
-                    </span>
-                    <span v-else>
-                      Pin {{key}}: {{ pin.split(';')[0] }} on channels {{ pin.split(';')[1] }}, {{ pin.split(';')[2] }}
-                    </span>
-                  </li>
-                </ul>
-
-                <div v-if="devices[selectedDevIndex].urls">
-                  Links: 
-                  <span v-for="(url,index) in devices[selectedDevIndex].urls" :key="url">
-                    <span v-if="index > 0">, </span><a v-bind:href="url" target="_blank">{{index+1}}</a>
-                  </span>
-                  <br/><br/>
-                </div>
-
-                <button @click="useDevice">Copy Device Pins</button>
-              </div>
-              <div v-else>Pick a device from the dropdown.</div>
-              
-            </td>
-            <td style="vertical-align:top; padding-left:5px;">
-
-              <h4>Pin Settings:</h4>
-              <div v-for="(role, index) in pins.roles" :key="index">
-                <span>{{index}}</span>
-                <select v-model="pins.roles[index]">
-                  <option v-for="(name, index2) in pins.rolenames" :value="index2" :key="index2" :selected="(role == index2)">{{name}}</option>
-                </select>
-                <input type="number" min="0" max="32" step="1" v-model="pins.channels[index]">
-              </div>
-              <button @click="savePins">Save Pins</button>
-              
-            </td>
-          </tr>
-        </table>
+      <div>
+        <device :selected-device="selectedDevice" style="margin: 10px 0"></device>
+        <div v-if="selectedDevice">
+          <button @click="useDevice">Copy Device Pins</button>
+        </div>
+        <div v-else>Pick a device from the dropdown.</div>
       </div>
     </div>
+
+    <div class="item">
+      <h4>Pin Settings:</h4>
+      <div v-for="(role, index) in pins.roles" :key="index">
+        <span>{{index}}</span>
+        <select v-model="pins.roles[index]">
+          <option v-for="(name, index2) in pins.rolenames" :value="index2" :key="index2" :selected="(role == index2)">{{name}}</option>
+        </select>
+        <input type="number" min="0" max="32" step="1" v-model="pins.channels[index]">
+      </div>
+      <button @click="savePins">Save Pins</button>
+    </div>
+  </div>
 </template>
 
 <script>
   module.exports = {
+    components: {
+      'device': window.getComponent('device')
+    },
     data: ()=>{
       return {
         uptime_s: 0,
@@ -101,11 +75,11 @@
         interval: null,
 
         devices: null,
-        selectedDevIndex: 0,
-        selectedChipset: 0,
+        selectedDevice: null,
         chipsets:[
           "All","BK7231N","BK7231S","BK7231T","BL602"
         ],
+        selectedChipset: "All",
         pinRoleNames: [
           " ",
           "Relay",
@@ -134,14 +108,13 @@
       }
     },
     computed:{
-      //Devices filtered by chipset
+      /* Returns devices filtered by chipset */
       filteredDevices(){
-        if (this.selectedChipset===0) { return this.devices; }
-        
-        let selectedChipsetName = this.chipsets[this.selectedChipset];
+        if (this.selectedChipset === "All") { return this.devices; }
 
-        //Empty value still appears at the beginning
-        return this.devices.filter(item => item.name === "" || item.chip === selectedChipsetName);
+        //The first value is empty value
+        var list = this.devices.filter(item => item === null || item.chip === this.selectedChipset);
+        return list;
       }
     },
     methods:{
@@ -217,7 +190,7 @@
         return this.pinRoleNames.indexOf(role);
       },
       useDevice(){
-        if (this.selectedDevIndex===0){ //Nothing was selected, first item is empty
+        if (this.selectedDevice === null){ //No device was selected, keep current pin values
           return;
         }
 
@@ -228,7 +201,7 @@
           newPinsChannels.push(0);
         }
 
-        var devicePins = this.devices[this.selectedDevIndex].pins;
+        var devicePins = this.selectedDevice.pins;
         for(let pin in devicePins){
           let roleChannel = devicePins[pin].split(";");
 
@@ -238,18 +211,20 @@
 
         this.pins.roles = newPinsRoles;
         this.pins.channels = newPinsChannels;
-        this.deviceFlag = this.devices[this.selectedDevIndex].flag || "";
-        this.deviceCommand = this.devices[this.selectedDevIndex].command || "";
+        this.deviceFlag = this.selectedDevice.flag || "";
+        this.deviceCommand = this.selectedDevice.command || "";
       },
       getDevices(){
         fetch("devices.json")
           .then(response => response.json())
           .then(data => {
-            this.devices = data.sort((a,b) => {
+            this.devices = data.devices.sort((a,b) => {
               const nameA = this.getDeviceDisplayName(a).toLowerCase();
               const nameB = this.getDeviceDisplayName(b).toLowerCase();
               return nameA < nameB ? -1 : (nameA > nameB ? 1: 0);
             });
+
+            this.devices.unshift(null); //Empty placeholder
           })
           .catch(err => {
               this.error = err.toString();
@@ -257,7 +232,8 @@
             });
       },
       getDeviceDisplayName(dev){
-        return dev.vendor + " " + dev.name;
+        //The first option is a placeholder with null value
+        return dev ? dev.vendor + " " + dev.name : "";
       }
     },
     mounted (){
@@ -280,20 +256,11 @@
 
 <style scoped>
   .container {
-    position:relative;
+    display: flex;
+    justify-content: center;
   }
 
-  .left {
-    position:absolute;
-    left:0;
-    top:0;
-    width:50%;
-  }  
-
-  .right {
-    position:absolute;
-    left:50%;
-    top:0;
-    width:50%;
+  .item {
+    padding: 0 15px;
   }
 </style>

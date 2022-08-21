@@ -2,8 +2,8 @@
   <div v-if="selectedDevice">
     <div>
       Chipset: {{ selectedDevice.chip}} {{ selectedDevice.board }}<br/>
-      Model: {{ selectedDevice.model || "unknown"}}<br/>
-      <img v-bind:src="selectedDevice.image" height="200" v-bind:alt="getDeviceDisplayName(selectedDevice)"/>
+      Model: {{ selectedDevice.model || "Unknown"}}<br/>
+      <img v-if="selectedDevice.image" v-bind:src="selectedDevice.image" height="200" v-bind:alt="getDeviceDisplayName(selectedDevice)"/>
     </div>
 
     <ul>
@@ -16,8 +16,14 @@
         </span>
       </li>
     </ul>
+    
+    <span v-if="selectedDevice.wiki">
+      <a v-bind:href="selectedDevice.wiki" target="_blank">Forum</a>&nbsp;
+    </span>
+    <span v-if="selectedDevice.product">
+      <a v-bind:href="selectedDevice.product" target="_blank">Product</a>&nbsp;
+    </span>
 
-    <a v-bind:href="selectedDevice.wiki" target="_blank">Wiki</a>
     <div v-if="selectedDevice.urls">
       Links: 
       <span v-for="(url,index) in selectedDevice.urls" :key="url">
@@ -35,8 +41,8 @@
     },
     methods:{
       getDeviceDisplayName(dev){
-        //The first option is placeholder with no name
-        return dev.name ? dev.vendor + " " + dev.name : "";
+        //The first option is a placeholder with null value
+        return dev ? dev.vendor + " " + dev.name : "";
       }
     }
 }
