@@ -74,12 +74,14 @@
           }
         },
         "command": {
-          "description": "Additional custom command",
-          "type": "string"
+          "description": "Startup command",
+          "type": "string",
+          "maxLength": 127
         },
         "flag": {
-          "description": "Additional custom flag",
-          "type": "string"
+          "description": "OBK Device flag to set",
+          "type": "string",
+          "maxLength": 127
         },
         "keywords": {
           "description": "Keywords",
