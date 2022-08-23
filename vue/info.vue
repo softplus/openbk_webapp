@@ -29,7 +29,7 @@
       <div>
         <device :selected-device="selectedDevice" style="margin: 10px 0"></device>
         <div v-if="selectedDevice">
-          <button @click="useDevice">Copy Device Pins</button>
+          <button @click="useDevice">Copy Device Settings</button>
         </div>
         <div v-else>Pick a device from the dropdown.</div>
       </div>
@@ -44,6 +44,11 @@
         </select>
         <input type="number" min="0" max="32" step="1" v-model="pins.channels[index]">
       </div>
+
+      <br/>
+      <label for="deviceFlag" style="width:75px; display: inline-block;">Flag:</label>&nbsp;<input id="deviceFlag" v-model="deviceFlag" /><br/>
+      <label for="deviceCommand" style="width:75px; display: inline-block;">Command:</label>&nbsp;<input id="deviceCommand" v-model="deviceCommand" /><br/>
+      
       <button @click="savePins">Save Pins</button>
     </div>
   </div>
