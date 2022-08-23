@@ -458,6 +458,51 @@
       },
       "image": "https://obrazki.elektroda.pl/2789424600_1656890909.jpg",
       "wiki": ""
+    },
+
+    {
+      "vendor": "Enbrighten",
+      "name": "WiFi Switch",
+      "model": "WFD4103",
+      "chip": "BK7231T",
+      "board": "WB2S",
+      "pins": {
+        "7": "LED_n;1",
+        "24": "Relay;1",
+        "26": "Btn;1"
+      },
+      "image": "https://obrazki.elektroda.pl/1036592500_1659877616.jpg",
+      "wiki": "https://www.elektroda.com/rtvforum/topic3911041.html#20133554",
+      "product": "https://enbrightenme.com/enbrighten-indoor-plug-in-mini-wifi-smart-switch-2-pack-white"
+    },
+
+    {
+      "vendor": "Sonoff",
+      "name": "MINI R3 Smart Switch",
+      "model": "MiniR3",
+      "chip": "BL602",
+      "pins": {
+        "1": "WifiLED_n;1",
+        "5": "Btn;1",
+        "22": "relay;1"
+      },
+      "image": "https://static.elektroda.pl/attach/thumb/3_1141202.jpg",
+      "wiki": "https://www.elektroda.com/rtvforum/topic3889041-120.html#20129282",
+      "product": "https://sonoff.tech/product/minir3"
+    },
+
+    {
+      "vendor": "Aubess",
+      "name": "Mini Smart Switch 16A",
+      "chip": "BK7231N",
+      "pins": {
+        "6": "LED_n;1",
+        "8": "Btn;1",
+        "14": "Btn;1",
+        "15": "relay;1"
+      },
+      "image": "https://obrazki.elektroda.pl/6209806600_1660573904.jpg",
+      "wiki": "https://www.elektroda.com/rtvforum/topic3912748.html#20145042"
     }
   ]
 }
