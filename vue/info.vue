@@ -159,21 +159,34 @@
 
       },
       savePins() {
+        let tosave = {};
+
+        //Send more data pieces conditionally to prevent errors
+        if (this.supportsClientDeviceDB) { 
+          //Valid deviceFlag is >=0 and <=10 (see new_pins.h)
+          var deviceFlagParsed = parseInt(this.deviceFlag, 10);
+          if (!isFinite(deviceFlagParsed) || isNaN(deviceFlagParsed) || (deviceFlagParsed < 0) || (deviceFlagParsed > 10)){
+            alert("Invalid flag value. Valid values are integers >= 0 and <= 10");
+            return;
+          }
+          
+          tosave.deviceFlag = deviceFlagParsed;
+
+          //Only send non-empty string value
+          var deviceCommandParsed = (this.deviceCommand || "").trim();
+          if (deviceCommandParsed){
+            tosave.deviceCommand = deviceCommandParsed;
+          }
+        }
+
         for (let i = 0; i < this.pins.channels.length; i++){
           this.pins.channels[i] = +this.pins.channels[i];
         }
         for (let i = 0; i < this.pins.roles.length; i++){
           this.pins.roles[i] = +this.pins.roles[i];
         }
-        let tosave = {
-          channels: this.pins.channels,
-          roles: this.pins.roles
-        }
-
-        if (this.supportsClientDeviceDB) { //Send more data pieces conditionally to prevent errors
-          tosave.deviceFlag = this.deviceFlag;
-          tosave.deviceCommand = this.deviceCommand;
-        }
+        tosave.channels = this.pins.channels;
+        tosave.roles = this.pins.roles;
 
         let url = window.device+'/api/pins';
         fetch(url, {

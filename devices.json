@@ -175,7 +175,7 @@
       },
       "image": "https://obrazki.elektroda.pl/4181235400_1659263189.jpg",
       "wiki": "https://www.elektroda.com/rtvforum/viewtopic.php?p=20123466#20123466",
-      "flag": "LED_RAWCHANNELSMODE"
+      "flag": 3
     },
 
     {
@@ -258,7 +258,7 @@
         "17": "Relay;1",
         "26": "Button;1"
       },
-      "flag": "BTN_INSTANTTOUCH",
+      "flag": 6,
       "image": "",
       "wiki": ""
     },
