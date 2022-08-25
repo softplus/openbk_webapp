@@ -18,19 +18,26 @@ Features include OTA, device filesystem management, device configuration, loggin
 
 ## Device Database
 
-The webApp now supports client device database. Each device entry consists of the following fields:
+The webApp now supports client device database. 
 
-* vendor: (required) Vendor
-* name: (required) Device name
-* model: (optional) Model number
-* chip: (required) Chipset
-* board: (optional) Board
-* pins: (required) Pin configuration. The pin value can be
-    * PinRole;channel
-    * PinRole;channel;secondChannel
-* urls: (optional) Array of reference urls
-* flag: (optional) Optional operation flag passed to `CFG_SetFlag`, possible values are `LED_RAWCHANNELSMODE`, `BTN_INSTANTTOUCH`.
-* command: (optional) Value passed to `CFG_SetShortStartupCommand_AndExecuteNow`
+Each device entry consists of the following **required** fields:
+
+* vendor: Vendor
+* name: Device name
+* chip: Chipset
+* pins: Pin configuration mapping. The pin value can be *PinRole;channel* or *PinRole;channel;secondChannel*
+* image: Main image
+* wiki: Wiki url
+
+And these **optional** fields:
+* model: Device model
+* board: Board
+* product: Product url
+* urls: Reference urls
+* gallery: Gallery urls
+* flag: Device flag (see [new_pins.h](https://github.com/openshwprojects/OpenBK7231T_App/blob/4fd6a292d52146fa493f0a0d7c7069333cd12e5f/src/new_pins.h))
+* command: Startup command passed to `CFG_SetShortStartupCommand_AndExecuteNow`
+* keywords: Keywords
 
 Available pin roles:
 * Relay
@@ -59,16 +66,17 @@ Available pin roles:
 Sample:
 ```
   {
-    "name": "CasaLife CCT LED Downlight SMART-AL2017-TGTS",
+    "vendor": "CasaLife",
+    "name": "CCT LED Downlight",
+    "model": "SMART-AL2017-TGTS",
     "chip": "BK7231T",
     "pins": {
       "7": "PWM;0",
       "8": "PWM;1"
     },
-    "urls": [
-      "https://www.elektroda.com/rtvforum/viewtopic.php?p=20123466#20123466"
-    ],
-    "flag": "LED_RAWCHANNELSMODE"
+    "image": "https://obrazki.elektroda.pl/4181235400_1659263189.jpg",
+    "wiki": "https://www.elektroda.com/rtvforum/viewtopic.php?p=20123466#20123466",
+    "flag": 3
   }
 ```
 
@@ -86,10 +94,10 @@ The new device selection interface will appear under `Config` tab if the device 
 Edit `indexlocal.html` to where `window.device` points at the test device.
 ```
         <script>
-            window.root = '/beken/';
+            window.root = '';
             window.device = 'http://192.168.1.176';
         </script>
-        <script src="/beken/startup.js"></script>
+        <script src="startup.js"></script>
 ```
 
 The site content can be served through many ways including [nodejs](https://nodejs.org/en/).
@@ -99,3 +107,19 @@ The site content can be served through many ways including [nodejs](https://node
 * Navigate to `http://localhost/indexlocal`
 
 The web app page will fetch data from your test device.
+
+
+## device.json
+If you are using VSCode and plan on editing `devices.json`, then it can be validated against `schema.json` by adding this to your settings.
+
+```
+"json.schemas": [
+
+        {
+            "fileMatch": [
+                "/devices.json"
+            ],
+            "url": "./schema.json"
+        } 
+    ]
+```
