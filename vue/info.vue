@@ -13,7 +13,7 @@
       <p v-if="error">Error: {{error}}</p>
     </div>
 
-    <div class="item" v-if="supportsClientDeviceDB">
+    <div class="item" v-if="supportsClientDeviceDB" style="width: 300px;">
       <h4>Devices:</h4>
       Chipset:
       <select v-model="selectedChipset">
@@ -22,7 +22,7 @@
       {{ (filteredDevices || []).length - 1 }} devices
       <br/><br/>
 
-      <select v-model="selectedDevice" >
+      <select v-model="selectedDevice" style="width: 250px;">
         <option v-for="dev in filteredDevices" :value="dev" :key="dev">{{ getDeviceDisplayName(dev) }}</option>
       </select>
 
@@ -47,7 +47,7 @@
 
       <br/>
       <label for="deviceFlag" style="width:75px; display: inline-block;">Flag:</label>&nbsp;<input id="deviceFlag" v-model="deviceFlag" /><br/>
-      <label for="deviceCommand" style="width:75px; display: inline-block;">Command:</label>&nbsp;<input id="deviceCommand" v-model="deviceCommand" /><br/>
+      <label for="deviceCommand" style="width:75px; display: inline-block;">Command:</label>&nbsp;<input id="deviceCommand" v-model="deviceCommand" placeholder="Startup command"/><br/>
       
       <button @click="savePins">Save Pins</button>
     </div>
@@ -279,6 +279,6 @@
   }
 
   .item {
-    padding: 0 15px;
+    padding: 0 10px 0 10px;
   }
 </style>

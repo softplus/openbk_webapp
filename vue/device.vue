@@ -1,9 +1,9 @@
 <template>
-  <div v-if="selectedDevice">
+  <div v-if="selectedDevice" style="width:300px;">
     <div>
       Chipset: {{ selectedDevice.chip}} {{ selectedDevice.board }}<br/>
       Model: {{ selectedDevice.model || "Unknown"}}<br/>
-      <img v-if="selectedDevice.image" v-bind:src="selectedDevice.image" height="200" v-bind:alt="getDeviceDisplayName(selectedDevice)"/>
+      <img v-if="selectedDevice.image" v-bind:src="selectedDevice.image" width="250" v-bind:alt="getDeviceDisplayName(selectedDevice)"/>
     </div>
 
     <ul>
@@ -16,6 +16,13 @@
         </span>
       </li>
     </ul>
+    
+    <div v-if="selectedDevice.flag !== undefined">
+      Flag:&nbsp;<span>{{selectedDevice.flag}}
+    </div>
+    <div v-if="selectedDevice.command">
+      Command:&nbsp;<span>{{selectedDevice.command}}
+    </div>
     
     <span v-if="selectedDevice.wiki">
       <a v-bind:href="selectedDevice.wiki" target="_blank">Forum</a>&nbsp;
