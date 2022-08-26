@@ -1,24 +1,32 @@
 <template>
     <div>
         <div>
-        <button @click="backup(null, $event)">Read fsblock</button>
-        <button @click="startota(null, $event)">Start OTA</button>
-        <button @click="reboot(null, $event)">Reboot</button>
-        <button @click="restore(null, $event)">Restore fsblock</button>
-        <br/>
-        <button @click="sequence(null, $event)">Backup/OTA/Resore</button>
-        <br/>
-        <select v-model="defaultaction">
-            <option value=''>Do nothing</option>
-            <option value='ota'>OTA Only</option>
-            <option value='sequence'>Backup/OTA/Restore</option>
-        </select>
-        <span>Selected: {{ defaultaction }}</span>
+            <p>Chipset: {{chipset}}</p>
+            <p>Build: {{build}}</p>
         </div>
-        <div class="drop" @drop="dropHandler($event)" @dragover="dragOverHandler($event)">
-            <div class="otatext center" v-html="otatext"></div>
+        <div>
+            <button @click="backup(null, $event)">Read fsblock</button>
+            <button :disabled="!otadata" @click="startota(null, $event)">Start OTA</button>
+            <button @click="reboot(null, $event)">Reboot</button>
+            <button @click="restore(null, $event)">Restore fsblock</button>
+            <br/>
+            <button :disabled="!otadata" @click="sequence(null, $event)">Backup/OTA/Resore</button>
+            <br/>
+            <select v-model="defaultaction">
+                <option value=''>Do nothing</option>
+                <option value='ota'>OTA Only</option>
+                <option value='sequence'>Backup/OTA/Restore</option>
+            </select>
+            <span>Selected: {{ defaultaction }}</span>
         </div>
-        <div v-html="status"></div>
+        <br/>
+        <div>
+            <label for="otaFilePicker">Select OTA file:</label><input id="otaFilePicker" type="file" @change="fileSelected($event)" :accept="otaFileExtension">
+            <div class="drop" @drop="dropHandler($event)" @dragover="dragOverHandler($event)">
+                <div class="otatext center" v-html="otatext"></div>
+            </div>
+            <div v-html="status" :class="{invalid: invalidOTASelected}"></div>
+        </div>
     </div>
 </template>
 
@@ -30,55 +38,118 @@
         msg: 'world!',
         backupdata: null,
         otadata:null,
-        otatext:'drop OTA file (.RBL) here',
-        status:'nothing going on',
-        defaultaction: ''
+        otatext:'Drop OTA file here',
+        status:'Nothing going on',
+        defaultaction: '',
+        build:'unknown',
+        chipset:'unknown',
+        invalidOTASelected: false,
+        otaFileExtension:".rbl,.img"
       }
     },
     methods:{
+        getinfo(){
+            let url = window.device+'/api/info';
+            fetch(url)
+                .then(response => response.json())
+                .then(res => {
+                    this.build = res.build;
+                    this.chipset = res.chipset;     //Set chipset to fixed value for testing
+                    this.otaFileExtension = this.chipSetUsesRBL() ? ".rbl" : ".img";
+                })
+                .catch(err => {
+                    this.error = err.toString();
+                    console.error(err)
+                }); // Never forget the final catch!
+        },
+
+        /* Check if the ArrayBuffer represents RBL file */
+        isRBL(arrayBuffer){
+            let view = new DataView(arrayBuffer);
+            if (view.byteLength < 3) return false;
+            console.log(view);
+            return view.getUint8(0) === 82 && view.getUint8(1) === 66 && view.getUint8(2) === 76;
+        },
+
+        /* Check if the chipset uses RBL files */
+        chipSetUsesRBL(){
+            return this.chipset === "BK7231T" || this.chipset === "BK7231N";
+        },
+
+        /* Check if the ota fileName matches the chipset */
+        fileNameMatchesChipset(fileName){
+            //e.g. OpenW800_1.12.40_ota.img, OpenBK7231N_1.12.40.rbl, OpenW800_1.12.40_ota.img
+            var lowerName = fileName.toLowerCase();
+            if (!lowerName.startsWith("open" + this.chipset.toLowerCase() + "_")) return false;
+
+            var ext = this.chipSetUsesRBL() ? ".rbl" : ".img";
+            return lowerName.endsWith(ext)
+        },
+
+        /* Check ota data from file selection/drop */
+        checkOTAData(event, file, operation){
+            this.otadata = null;    //Reset otadata
+            
+            var result = event.target.result;   //ArrayBuffer
+            console.log("Checking ota data");
+            console.log(result);
+            console.log('otadata len:' + result.byteLength);
+            this.otatext = file.name + ' len:' + result.byteLength;
+
+            if (this.chipSetUsesRBL()){
+                if (!this.isRBL(result)){   //if the file is not RBl then it is right away invalid
+                    this.invalidOTASelected = true;
+                }
+                else{
+                    //Prevent BK7231N from being used in BK7231T
+                    this.invalidOTASelected = !this.fileNameMatchesChipset(file.name);
+                }
+            }
+            else{
+                //At this point W800 is the only other chipset with has OTA images e.g. OpenW800_1.12.40_ota.img
+                //img file doesn't seem to have any marker bytes so we will just check the file name
+                this.invalidOTASelected = !this.fileNameMatchesChipset(file.name);
+            }
+
+            if (this.invalidOTASelected){
+                this.status = 'Invalid OTA file was ' + operation;
+            }
+            else{
+                this.status = 'OTA file '+ operation;
+                this.otadata = result;
+            }
+        },
+        fileSelected(ev){
+            console.log("File selected");
+            this.invalidOTASelected = false; //Reset status style
+
+            var file = ev.target.files[0];  //There should be only one file
+            if (file){
+                console.log('... fileName = ' + file.name);
+                var reader = new FileReader();
+                reader.onload = (event) => this.checkOTAData(event, file, "selected");
+                reader.readAsArrayBuffer(file);
+            }
+        },
         dropHandler(ev){
             ev.preventDefault();
-            console.log('drop');
             if (ev.dataTransfer.items) {
+                console.log('Dropped ' + ev.dataTransfer.items.length + ' items');
+
                 // Use DataTransferItemList interface to access the file(s)
                 for (var i = 0; i < ev.dataTransfer.items.length; i++) {
                     // If dropped items aren't files, reject them
                     if (ev.dataTransfer.items[i].kind === 'file') {
                         var file = ev.dataTransfer.items[i].getAsFile();
                         console.log('... file[' + i + '].name = ' + file.name);
-                        reader = new FileReader();
-                        reader.onload = (event) => {
-                            console.log(event);
-                            console.log('set otadata len:'+event.target.result.byteLength);
-                            this.otadata = event.target.result;
-                            this.otatext = file.name + ' len:'+this.otadata.byteLength;
-                            this.status = 'OTA file dropped...';
-                            switch (this.defaultaction){
-                                case 'ota': this.startota(); break;
-                                case 'sequence':  this.sequence(); break;
-                            }
-                            //holder.style.background = 'url(' + event.target.result + ') no-repeat center';
-                        };
+                        var reader = new FileReader();
+                        reader.onload = (event) => this.checkOTAData(event, file, "dropped");
+                        
                         console.log(file);
                         reader.readAsArrayBuffer(file);
                     }
                 }
-            } else {
-                // Use DataTransfer interface to access the file(s)
-                for (var i = 0; i < ev.dataTransfer.files.length; i++) {
-                    console.log('... file[' + i + '].name = ' + ev.dataTransfer.files[i].name);
-                    reader = new FileReader();
-                    reader.onload = (event) => {
-                        console.log(event);
-                        console.log('set otadata len:'+event.target.result.byteLength);
-                        this.otadata = event.target.result;
-                        this.otatext = file.name + ' len:'+this.otadata.byteLength;
-                        this.status = 'OTA file dropped...';
-                    };
-                    console.log(file);
-                    reader.readAsArrayBuffer(file);
-                }
-            }            
+            }
         },
 
         dragOverHandler(ev){
@@ -177,6 +248,7 @@
     },
     mounted (){
         this.msg = 'fred';
+        this.getinfo();
         console.log('mounted ota');
     }
   }
@@ -194,6 +266,10 @@
     }
 
     .otatext {
+    }
+    .invalid{
+        font-weight: bold;
+        color: red;
     }
     .center {
         margin: 0;
