@@ -20,6 +20,7 @@ window.onload = ()=>{
     appdiv.appendChild(comp);
     
     window.components = [
+        { name:'device', path: window.root+'vue/device.vue' },
         { name:'ota', path: window.root+'vue/ota.vue' },
         { name:'filesystem', path: window.root+'vue/filesystem.vue' },
         { name:'info', path: window.root+'vue/info.vue' },
