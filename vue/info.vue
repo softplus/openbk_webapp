@@ -164,10 +164,12 @@
         //Send more data pieces conditionally to prevent errors
         if (this.supportsClientDeviceDB) { 
           //Valid deviceFlag is >=0 and <=10 (see new_pins.h)
-          var deviceFlagParsed = parseInt(this.deviceFlag, 10);
-          if (!isFinite(deviceFlagParsed) || isNaN(deviceFlagParsed) || (deviceFlagParsed < 0) || (deviceFlagParsed > 10)){
-            alert("Invalid flag value. Valid values are integers >= 0 and <= 10");
-            return;
+          if (this.deviceFlag){ //Check flag value if populated
+            var deviceFlagParsed = parseInt(this.deviceFlag, 10);
+            if (!isFinite(deviceFlagParsed) || isNaN(deviceFlagParsed) || (deviceFlagParsed < 0) || (deviceFlagParsed > 10)){
+              alert("Invalid flag value. Valid values are integers >= 0 and <= 10");
+              return;
+            }
           }
           
           tosave.deviceFlag = deviceFlagParsed;
