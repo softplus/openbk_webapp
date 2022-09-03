@@ -233,7 +233,7 @@
         this.deviceCommand = this.selectedDevice.command || "";
       },
       getDevices(){
-        fetch("devices.json")
+        fetch(window.root + "devices.json")
           .then(response => response.json())
           .then(data => {
             this.devices = data.devices.sort((a,b) => {
