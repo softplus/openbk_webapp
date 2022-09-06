@@ -82,7 +82,7 @@
         devices: null,
         selectedDevice: null,
         chipsets:[
-          "All","BK7231N","BK7231S","BK7231T","BL602"
+          "All","BK7231N","BK7231S","BK7231T","BL602", "XR809", "W800"
         ],
         selectedChipset: "All",
         pinRoleNames: [
