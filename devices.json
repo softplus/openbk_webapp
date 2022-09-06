@@ -503,6 +503,28 @@
       },
       "image": "https://obrazki.elektroda.pl/6209806600_1660573904.jpg",
       "wiki": "https://www.elektroda.com/rtvforum/topic3912748.html#20145042"
+    },
+
+    {
+      "vendor": "Smartlife",
+      "name": "AW201 Door Sensor",
+      "chip": "XR809",
+      "pins": {
+        
+      },
+      "image": "https://obrazki.elektroda.pl/7067073100_1611483584.jpg",
+      "wiki": "https://www.elektroda.pl/rtvforum/topic3771510.html"
+    },
+
+    {
+      "vendor": "Smartlife",
+      "name": "Tuya Smart WiFi Water Leak Sensor",
+      "chip": "XR809",
+      "pins": {
+        
+      },
+      "image": "https://obrazki.elektroda.pl/6511416900_1650973467.jpg",
+      "wiki": "https://www.elektroda.pl/rtvforum/viewtopic.php?p=20003017#20003017"
     }
   ]
 }
