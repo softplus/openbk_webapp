@@ -525,6 +525,28 @@
       },
       "image": "https://obrazki.elektroda.pl/6511416900_1650973467.jpg",
       "wiki": "https://www.elektroda.pl/rtvforum/viewtopic.php?p=20003017#20003017"
+    },
+
+    {
+      "vendor": "AVATTO",
+      "name": "Tuya DS06 Door Sensor",
+      "chip": "BK7231N",
+      "pins": {
+        
+      },
+      "image": "https://obrazki.elektroda.pl/1452278400_1660223934.jpg",
+      "wiki": "https://www.elektroda.pl/rtvforum/topic3914412.html"
+    },
+
+    {
+      "vendor": "AVATTO",
+      "name": "Tuya W06 Water Sensor",
+      "chip": "BK7231N",
+      "pins": {
+        
+      },
+      "image": "https://obrazki.elektroda.pl/9412782200_1660417605.jpg",
+      "wiki": "https://www.elektroda.pl/rtvforum/topic3914412.html"
     }
   ]
 }
