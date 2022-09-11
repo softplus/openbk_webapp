@@ -121,7 +121,7 @@
       "chip": "BK7231N",
       "pins": {
         "7": "BP5758D_CLK;0",
-        "8": "BP5758D_DAT;0",
+        "8": "BP5758D_DAT;0"
       },
       "image": "https://obrazki.elektroda.pl/8257876800_1662741933.jpg",
       "wiki": "https://www.elektroda.pl/rtvforum/viewtopic.php?t=3918447&highlight="
