@@ -108,7 +108,10 @@
           "BL0937CF1",
           "ADC",
           "SM2135DAT",
-          "SM2135CLK"
+          "SM2135CLK",
+          "BP5758D_DAT",
+	        "BP5758D_CLK",
+        	"PWM_n"
         ]
       }
     },
