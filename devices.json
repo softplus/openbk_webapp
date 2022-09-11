@@ -248,6 +248,40 @@
     },
 
     {
+      "vendor": "NAS",
+      "name": "Power Metering Plug (BK7231T + BL0937)",
+      "model": "NAS-WR07W",
+      "chip": "BK7231T",
+      "pins": {
+        "6": "WifiLED_n;1",
+        "9": "Button;1",
+        "0": "BL0937_CF;1",
+        "8": "BL0937_CF1;1",
+        "24": "BL0937_SEL;1",
+        "26": "Relay;1"
+      },
+      "image": "https://obrazki.elektroda.pl/2027206500_1656763373.jpg",
+      "wiki": "https://www.elektroda.pl/rtvforum/viewtopic.php?t=3917832&highlight=",
+      "command": "backlog startDriver BL0937;"
+    },
+    {
+      "vendor": "NAS",
+      "name": "Power Metering Plug (BK7231N + BL0942)",
+      "model": "NAS-WR01W",
+      "chip": "BK7231N",
+      "pins": {
+        "6": "WifiLED_n;1",
+        "9": "Button;1",
+        "0": "BL0937_CF;1",
+        "8": "BL0937_CF1;1",
+        "24": "BL0937_SEL;1",
+        "26": "Relay;1"
+      },
+      "image": "https://obrazki.elektroda.pl/4878877200_1662475527.jpg",
+      "wiki": "https://www.elektroda.pl/rtvforum/viewtopic.php?t=3917832&highlight=",
+      "command": "backlog startDriver BL0942;"
+    },
+    {
       "vendor": "QiaChip",
       "name": "Smart Switch",
       "chip": "BK7231N",
