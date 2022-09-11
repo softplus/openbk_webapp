@@ -249,7 +249,7 @@
 
     {
       "vendor": "NAS",
-      "name": "Power Metering Plug (BK7231T + BL0937)",
+      "name": "NAS-WR07W Power Metering Plug (BK7231T + BL0937)",
       "model": "NAS-WR07W",
       "chip": "BK7231T",
       "pins": {
@@ -266,15 +266,12 @@
     },
     {
       "vendor": "NAS",
-      "name": "Power Metering Plug (BK7231N + BL0942)",
+      "name": "NAS-WR01W Power Metering Plug (BK7231N + BL0942)",
       "model": "NAS-WR01W",
       "chip": "BK7231N",
       "pins": {
         "6": "WifiLED_n;1",
         "9": "Button;1",
-        "0": "BL0937_CF;1",
-        "8": "BL0937_CF1;1",
-        "24": "BL0937_SEL;1",
         "26": "Relay;1"
       },
       "image": "https://obrazki.elektroda.pl/4878877200_1662475527.jpg",
