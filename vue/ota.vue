@@ -55,7 +55,10 @@
                 .then(res => {
                     this.build = res.build;
                     this.chipset = res.chipset;     //Set chipset to fixed value for testing
-                    this.otaFileExtension = this.chipSetUsesRBL() ? ".rbl" : ".img";
+
+                    if (this.chipset){
+                        this.otaFileExtension = this.chipSetUsesRBL() ? ".rbl" : ".img";
+                    }
                 })
                 .catch(err => {
                     this.error = err.toString();
@@ -78,12 +81,16 @@
 
         /* Check if the ota fileName matches the chipset */
         fileNameMatchesChipset(fileName){
+            if (!this.chipset){     //Accept any file if chipset missing (older firmware)
+                return true; 
+            }
+
             //e.g. OpenW800_1.12.40_ota.img, OpenBK7231N_1.12.40.rbl, OpenW800_1.12.40_ota.img
             var lowerName = fileName.toLowerCase();
             if (!lowerName.startsWith("open" + this.chipset.toLowerCase() + "_")) return false;
 
             var ext = this.chipSetUsesRBL() ? ".rbl" : ".img";
-            return lowerName.endsWith(ext)
+            return lowerName.endsWith(ext);
         },
 
         /* Check ota data from file selection/drop */
