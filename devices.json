@@ -591,6 +591,25 @@
       "image": "https://obrazki.elektroda.pl/9412782200_1660417605.jpg",
       "wiki": "https://www.elektroda.pl/rtvforum/topic3914412.html",
       "command": "backlog startDriver tuyaMCU; startDriver tmSensor; linkTuyaMCUOutputToChannel 1 val 1; setChannelType 1 ReadOnly; linkTuyaMCUOutputToChannel 3 val 3; setChannelType 3 ReadOnly;"
+    },
+    {
+      "vendor": "Aubess",
+      "name": "Smart Plug",
+      "model": "Tuya WIFI Smart Socket",
+      "chip": "BK7231N",
+      "board": "CB2S",
+      "keywords": ["switch", "plug", "power monitoring", "BL0937"],
+      "pins": {
+        "6": "BL0937_CF1;0",
+        "7": "BL0937_CF;0",
+        "8": "LED_n;1",
+        "23": "Button;1",
+        "24": "BL0937_SEL;0",
+        "26": "Relay;1"
+      },
+      "image": "",
+      "wiki": "",
+      "product": "https://www.aubess.net/products/aubess-tuya-wifi-smart-socket-16a-work-with-alexa-google-home-yandex"
     }
   ]
 }
