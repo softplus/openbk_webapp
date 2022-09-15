@@ -255,9 +255,9 @@
       "pins": {
         "6": "WifiLED_n;1",
         "9": "Button;1",
-        "0": "BL0937_CF;1",
-        "8": "BL0937_CF1;1",
-        "24": "BL0937_SEL;1",
+        "0": "BL0937CF;1",
+        "8": "BL0937CF1;1",
+        "24": "BL0937SEL;1",
         "26": "Relay;1"
       },
       "image": "https://obrazki.elektroda.pl/2027206500_1656763373.jpg",
@@ -600,11 +600,11 @@
       "board": "CB2S",
       "keywords": ["switch", "plug", "power monitoring", "BL0937"],
       "pins": {
-        "6": "BL0937_CF1;0",
-        "7": "BL0937_CF;0",
+        "6": "BL0937CF1;0",
+        "7": "BL0937CF;0",
         "8": "LED_n;1",
         "23": "Button;1",
-        "24": "BL0937_SEL;0",
+        "24": "BL0937SEL;0",
         "26": "Relay;1"
       },
       "image": "",
