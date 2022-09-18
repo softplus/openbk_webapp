@@ -610,6 +610,66 @@
       "image": "",
       "wiki": "",
       "product": "https://www.aubess.net/products/aubess-tuya-wifi-smart-socket-16a-work-with-alexa-google-home-yandex"
+    },
+    {
+      "vendor": "Casenl",
+      "name": "4 gang push button switch",
+      "model": "Tuya WIFI 4gang Switch",
+      "chip": "BK7231N",
+      "board": "CBU",
+      "keywords": ["switch", "4 gang"],
+      "pins": {
+        "6": "Relay;1",
+        "7": "Relay;2",
+        "9": "Relay;1",
+        "14": "Button;1",
+        "16": "Button;2",
+        "20": "Button;3",
+        "22": "Button;4",
+        "24": "WifiLED;1",
+        "26": "Relay;4"
+      },
+      "image": "",
+      "wiki": "",
+      "product": "https://www.alibaba.com/product-detail/Factory-OEM-zigbee-smart-switch-eu_1600258056467.html"
+    },
+    {
+      "vendor": "Tuya",
+      "name": "E27 A60-Bulb LED RGBCCT 5PWMs",
+      "chip": "BK7231T",
+      "board": "WB2L",
+      "pins": {
+        "26": "PWM;1",
+        "24": "PWM;2",
+        "6": "PWM;3",
+        "8": "PWM;4",
+        "7": "PWM;5"
+      },
+      "image": "",
+      "wiki": ""
+      "product": "https://shopee.com.my/product/68463208/6454092983?smtt=0.5847450-1663473183.9"
+    },
+    {
+      "vendor": "Tuya",
+      "name": "MOES Smart Swich Module WIFI 4gang",
+      "model": "MOES Smart Swich Module WIFI 4gang",
+      "chip": "BK7231N",
+      "board": "CBU",
+      "keywords": ["switch", "4 gang"],
+      "pins": {
+        "24": "Relay;1",
+        "17": "Relay;2",
+        "26": "Relay;3",
+        "16": "Relay;4",
+        "14": "Button;1",
+        "7": "Button;1",
+        "16": "Button;2",
+        "9": "Button;3",
+        "15": "Button;4",
+      },
+      "image": "https://ae01.alicdn.com/kf/H64b1ce4cac764eee884f3a68023d7d153.jpg",
+      "wiki": "",
+      "product": "https://www.aliexpress.com/item/1005003425831720.html"
     }
   ]
 }
