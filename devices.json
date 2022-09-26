@@ -670,6 +670,22 @@
       "image": "https://ae01.alicdn.com/kf/H64b1ce4cac764eee884f3a68023d7d153.jpg",
       "wiki": "",
       "product": "https://www.aliexpress.com/item/1005003425831720.html"
+    },
+    {
+      "vendor": "Taloya",
+      "name": "Taloya 12\" 24W Ceiling Light",
+      "model": "YL300-24W-AI-WEMG",
+      "chip": "BK7231T",
+      "pins": {
+        "6": "PWM;5",
+        "8": "PWM;4",
+        "9": "PWM;1",
+        "24": "PWM;2",
+        "26": "PWM;3"
+      },
+      "image": "https://obrazki.elektroda.pl/7223834000_1663612234.jpg",
+      "wiki": "https://www.elektroda.com/rtvforum/viewtopic.php?p=20193940",
+      "flag": 11
     }
   ]
 }
