@@ -552,7 +552,7 @@
       "name": "AW201 Door Sensor",
       "chip": "XR809",
       "pins": {
-        
+
       },
       "image": "https://obrazki.elektroda.pl/7067073100_1611483584.jpg",
       "wiki": "https://www.elektroda.pl/rtvforum/topic3771510.html"
@@ -563,7 +563,7 @@
       "name": "Tuya Smart WiFi Water Leak Sensor",
       "chip": "XR809",
       "pins": {
-        
+
       },
       "image": "https://obrazki.elektroda.pl/6511416900_1650973467.jpg",
       "wiki": "https://www.elektroda.pl/rtvforum/viewtopic.php?p=20003017#20003017"
@@ -574,7 +574,7 @@
       "name": "Tuya DS06 Door Sensor",
       "chip": "BK7231N",
       "pins": {
-        
+
       },
       "image": "https://obrazki.elektroda.pl/1452278400_1660223934.jpg",
       "wiki": "https://www.elektroda.pl/rtvforum/topic3914412.html",
@@ -586,7 +586,7 @@
       "name": "Tuya W06 Water Sensor",
       "chip": "BK7231N",
       "pins": {
-        
+
       },
       "image": "https://obrazki.elektroda.pl/9412782200_1660417605.jpg",
       "wiki": "https://www.elektroda.pl/rtvforum/topic3914412.html",
@@ -686,6 +686,21 @@
       "image": "https://obrazki.elektroda.pl/7223834000_1663612234.jpg",
       "wiki": "https://www.elektroda.com/rtvforum/viewtopic.php?p=20193940",
       "flag": 11
+    },
+    {
+      "vendor": "Hama",
+      "name": "Hama WLAN LED Lamp, GU10, 5.5 W, RGBW",
+      "model": "Hama RGBCW GU10 5,5W Lamp",
+      "chip": "BK7231T",
+      "board": "WBLC5",
+      "pins": {
+        "24": "BP1658CJ_DAT;0",
+        "26": "BP1658CJ_CLK;0"
+      },
+      "image": "https://www.hama.com/bilder/00176/abx/00176598abx.png",
+      "wiki": "",
+      "product": "https://www.hama.com/00176598/hama-wlan-led-lamp-gu10-5-5-w-rgbw-dimmable-reflective-for-voice-app-control?srcLang=0&targetLang=1",
+      "flag": 4
     }
   ]
 }
