@@ -29,6 +29,17 @@
       "image": "https://obrazki.elektroda.pl/3591447000_1647901952.jpg",
       "wiki": "https://www.elektroda.pl/rtvforum/topic3881416.html"
     },
+    
+    {
+      "vendor": "Magic Home",
+      "name": "LED CCT Strip",
+      "chip": "BL602",
+      "pins": {
+        "20": "PWM;1"
+      },
+      "image": "https://obrazki.elektroda.pl/3786509100_1650998928.jpg",
+      "wiki": "https://www.elektroda.com/rtvforum/topic3889041.html#19999397"
+    },
 
     {
       "vendor": "Tuya",
