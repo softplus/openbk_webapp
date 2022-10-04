@@ -48,7 +48,7 @@
       <br/>
       <label for="deviceFlag" style="width:75px; display: inline-block;">Flag:</label>&nbsp;<input id="deviceFlag" v-model="deviceFlag" /><br/>
       <label for="deviceCommand" style="width:75px; display: inline-block;">Command:</label>&nbsp;<input id="deviceCommand" v-model="deviceCommand" placeholder="Startup command"/><br/>
-      
+
       <button @click="savePins">Save Pins</button>
     </div>
   </div>
@@ -63,7 +63,7 @@
       return {
         uptime_s: 0,
         build:'unknown',
-        sys:'unknown', 
+        sys:'unknown',
         ip:'unknown',
         mac:'unknown',
         mqtthost:'unknown',
@@ -111,6 +111,8 @@
           "SM2135CLK",
           "BP5758D_DAT",
 	        "BP5758D_CLK",
+          "BP1658CJ_DAT",
+	        "BP1658CJ_CLK",
         	"PWM_n"
         ]
       }
@@ -131,13 +133,13 @@
         fetch(url)
             .then(response => response.json())
             .then(res => {
-                this.uptime_s   = res.uptime_s; 
-                this.build      = res.build; 
-                this.sys        = res.sys; 
-                this.ip         = res.ip; 
-                this.mac        = res.mac; 
-                this.mqtthost   = res.mqtthost; 
-                this.mqtttopic  = res.mqtttopic; 
+                this.uptime_s   = res.uptime_s;
+                this.build      = res.build;
+                this.sys        = res.sys;
+                this.ip         = res.ip;
+                this.mac        = res.mac;
+                this.mqtthost   = res.mqtthost;
+                this.mqtttopic  = res.mqtttopic;
                 this.webapp     = res.webapp;
                 this.chipset    = res.chipset;
                 this.supportsClientDeviceDB = res.supportsClientDeviceDB;
@@ -165,7 +167,7 @@
         let tosave = {};
 
         //Send more data pieces conditionally to prevent errors
-        if (this.supportsClientDeviceDB) { 
+        if (this.supportsClientDeviceDB) {
           //Valid deviceFlag is >=0 and <=10 (see new_pins.h)
           if (this.deviceFlag){ //Check flag value if populated
             var deviceFlagParsed = parseInt(this.deviceFlag, 10);
@@ -174,7 +176,7 @@
               return;
             }
           }
-          
+
           tosave.deviceFlag = deviceFlagParsed;
 
           //Only send non-empty string value
