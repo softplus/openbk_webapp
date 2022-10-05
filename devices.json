@@ -683,6 +683,26 @@
       "product": "https://www.aliexpress.com/item/1005003425831720.html"
     },
     {
+      "vendor": "Tuya",
+      "name": "WX300P RGB Strip Controller",
+      "model": "WX300P",
+      "chip": "W800",
+      "pins": {
+      },
+      "image": "https://obrazki.elektroda.pl/3465732900_1657484339.jpg",
+      "wiki": "https://www.elektroda.com/rtvforum/topic3905652.html"
+    },
+    {
+      "vendor": "DT-BL10",
+      "name": "DT-BL10 Dev Board",
+      "model": "DT-BL10",
+      "chip": "BL602",
+      "pins": {
+      },
+      "image": "https://obrazki.elektroda.pl/3465732900_1657484339.jpg",
+      "wiki": "https://www.elektroda.pl/rtvforum/viewtopic.php?t=3900145&highlight="
+    },
+    {
       "vendor": "Taloya",
       "name": "Taloya 12\" 24W Ceiling Light",
       "model": "YL300-24W-AI-WEMG",
